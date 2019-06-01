@@ -25,3 +25,5 @@ Route::get('/user', function(Request $request){
 
 Route::post('/login', 'Account@login');
 Route::post('/signup', 'Account@createAccount');
+Route::get('/accounts', 'Account@getAllAccount');
+Route::get('/accounts/{id}', 'Account@getAccountById');

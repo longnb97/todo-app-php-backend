@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use SebastianBergmann\CodeCoverage\Report\Xml\Project;
 use Illuminate\Support\Facades\DB;
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+
 class Account extends Controller
 {
     public function login(Request $request)
@@ -22,16 +24,39 @@ class Account extends Controller
     {
         DB::table('accounts')->insert(
             [
-                'email' => $request->get('1'),
-                'password' => $request->get('2'),
-                // 'token' => 'Bearer aaaa',
-                'name' => $request->get('3'),
-                'job' => $request->get('4'),
-                'company' => $request->get('5'),
+
+                'email' => $request->email,
+                'password' => bcrypt($request->password),
+                'token' => $request->token,
+                'name' => $request->name,
+                'job' => $request->job,
+                'company' => $request->company,
             ],
         );
         $response = [
             'created' => 'success',
+        ];
+        return response()->json($response, 201);
+    }
+
+    public function getAccount(Request $request)
+    {
+        $data = DB::table('accounts')->get();
+        $response = [
+            'created' => 'success',
+            'data' => $data
+        ];
+        return response()->json($response, 201);
+    }
+
+    public function getAccountById($id)
+    {
+        $data = DB::table('accounts')
+            ->where('accountId', '=', $id)
+            ->get();
+        $response = [
+            'created' => 'success',
+            'data' => $data
         ];
         return response()->json($response, 201);
     }
