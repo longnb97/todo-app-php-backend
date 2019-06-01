@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Account;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +23,5 @@ Route::get('/user', function(Request $request){
     return response()->json('Hello World! Welcome to codingpearls.com', 200);
 });
 
+Route::post('/login', 'Account@login');
+Route::post('/signup', 'Account@createAccount');
