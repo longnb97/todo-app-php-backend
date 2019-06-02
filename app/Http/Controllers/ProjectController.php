@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\ProjectModel;
+use App\Project as ProjectModel;
 
 use Illuminate\Database\QueryException;
 use PhpParser\Node\Stmt\TryCatch;

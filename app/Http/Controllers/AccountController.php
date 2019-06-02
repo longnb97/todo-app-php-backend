@@ -8,7 +8,7 @@ use SebastianBergmann\CodeCoverage\Report\Xml\Project;
 
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use App\AccountModel;
+use App\Account as AccountModel;
 
 use Illuminate\Database\QueryException;
 

@@ -5,11 +5,23 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class AccountModel extends Model implements JWTSubject
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+
+
+class Account extends Authenticatable implements JWTSubject
 {
+    use Notifiable;
+    // protected $fillable = [
+    //     'name', 'email', 'password',
+    // ];
+    
+    // protected $hidden = [
+    //     'password', 'remember_token',
+    // ];
+
     public static function createAccount($user)
     {
         return DB::table('accounts')->insert($user);

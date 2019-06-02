@@ -2,17 +2,9 @@
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\TestController;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
 
 Route::post('/signup', 'AccountController@createAccount');
 
@@ -20,7 +12,7 @@ Route::post('/signup', 'AccountController@createAccount');
 Route::group([
     'middleware' => 'api',
     'prefix' => 'accounts'
-], function ($router) {
+], function () {
     Route::get('/', 'AccountController@getAllAccounts');
     Route::get('/{id}', 'AccountController@getAccountById');
     Route::delete('/{id}', 'AccountController@deleteAccountById');
@@ -29,15 +21,16 @@ Route::group([
 Route::group([
     'middleware' => 'api',
     'prefix' => 'auth'
-], function ($router) {
-    Route::post('/login', 'AccountController@handleLogin');
+], function () {
+    Route::post('/test', 'TestController@login');
+    Route::post('/login', 'AuthController@handleLogin');
 });
 
 
 Route::group([
     'middleware' => 'api',
     'prefix' => 'projects'
-], function ($router) {
+], function () {
     Route::get('/', 'ProjectController@getAllProjects');
     Route::post('/', 'ProjectController@createProject');
     Route::get('/all_projects/user/{userId}', 'ProjectController@getAccountAllProjects');
@@ -45,4 +38,5 @@ Route::group([
     Route::put('/{id}', 'ProjectController@changeProjectProperties');
     Route::delete('/{id}', 'ProjectController@deleteProjectById');
 });
+
 

@@ -4,8 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class ProjectModel extends Model
+class Project extends Model implements JWTSubject
 {
     public static function createProject($project)
     {
@@ -35,5 +36,20 @@ class ProjectModel extends Model
     {
         $query = DB::table('projects')->where('projectId', '=', $id)->update($project);
         return $query;
+    }
+
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    /**
+     * Return a key value array, containing any custom claims to be added to the JWT.
+     *
+     * @return array
+     */
+    public function getJWTCustomClaims()
+    {
+        return [];
     }
 }
