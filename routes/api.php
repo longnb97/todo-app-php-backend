@@ -1,29 +1,42 @@
 <?php
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Account;
-
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
-
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+use App\Http\Controllers\AccountController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\TestController;
 
 
-Route::get('/user', function(Request $request){
-    return response()->json('Hello World! Welcome to codingpearls.com', 200);
+Route::post('/signup', 'AccountController@createAccount');
+
+
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'accounts'
+], function () {
+    Route::get('/', 'AccountController@getAllAccounts');
+    Route::get('/{id}', 'AccountController@getAccountById');
+    Route::delete('/{id}', 'AccountController@deleteAccountById');
 });
 
-Route::post('/login', 'Account@login');
-Route::post('/signup', 'Account@createAccount');
-Route::get('/accounts', 'Account@getAllAccount');
-Route::get('/accounts/{id}', 'Account@getAccountById');
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'auth'
+], function () {
+    Route::post('/test', 'TestController@login');
+    Route::post('/login', 'AuthController@handleLogin');
+});
+
+
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'projects'
+], function () {
+    Route::get('/', 'ProjectController@getAllProjects');
+    Route::post('/', 'ProjectController@createProject');
+    Route::get('/all_projects/user/{userId}', 'ProjectController@getAccountAllProjects');
+    Route::get('/{id}', 'ProjectController@getProjectById');   
+    Route::put('/{id}', 'ProjectController@changeProjectProperties');
+    Route::delete('/{id}', 'ProjectController@deleteProjectById');
+});
+
+
