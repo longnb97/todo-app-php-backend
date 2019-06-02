@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
@@ -22,6 +23,18 @@ class AccountModel extends Model implements JWTSubject
     public static function getById($id)
     {
         return DB::table('accounts')->where('accountId', '=', $id)->get();
+    }
+
+    public static function deleteAccount($id)
+    {
+        return DB::table('accounts')->where('accountId', '=', $id)->delete();
+    }
+
+    public static function changePassword($id, $newPassword)
+    {
+        $newPass = Hash::make($newPassword);
+        $query = DB::table('accounts')->where(['accountId', '=', $id])->update(['password' => $newPass]);
+        return  query;
     }
 
     public function getJWTIdentifier()

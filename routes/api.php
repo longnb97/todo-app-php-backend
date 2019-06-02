@@ -21,8 +21,9 @@ Route::group([
     'middleware' => 'api',
     'prefix' => 'accounts'
 ], function ($router) {
-    Route::get('/', 'AccountController@getAllAccount');
+    Route::get('/', 'AccountController@getAllAccounts');
     Route::get('/{id}', 'AccountController@getAccountById');
+    Route::delete('/{id}', 'AccountController@deleteAccountById');
 });
 
 Route::group([
@@ -33,10 +34,15 @@ Route::group([
 });
 
 
-// Route::group([
-//     'middleware' => 'api',
-//     'prefix' => 'projects'
-// ], function ($router) {
-//     Route::post('/login', 'AccountController@login');
-// });
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'projects'
+], function ($router) {
+    Route::get('/', 'ProjectController@getAllProjects');
+    Route::post('/', 'ProjectController@createProject');
+    Route::get('/all_projects/user/{userId}', 'ProjectController@getAccountAllProjects');
+    Route::get('/{id}', 'ProjectController@getProjectById');   
+    Route::put('/{id}', 'ProjectController@changeProjectProperties');
+    Route::delete('/{id}', 'ProjectController@deleteProjectById');
+});
 

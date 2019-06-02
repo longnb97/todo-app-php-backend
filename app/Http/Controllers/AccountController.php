@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use SebastianBergmann\CodeCoverage\Report\Xml\Project;
 
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
+
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\AccountModel;
@@ -17,7 +16,7 @@ use Illuminate\Database\QueryException;
 
 class AccountController extends Controller
 {
-    public function message($success, $message, $statusCode, $data = null, $err = 'none')
+    public function message($success, $message, $statusCode, $data = 'none', $err = 'none')
     {
         $response = [
             'success' => $success,
@@ -44,7 +43,7 @@ class AccountController extends Controller
         // //$user['token'] = $token;
 
         try {
-            $data = AccountsModel::createAccount($user);
+            $data = AccountModel::createAccount($user);
             $response = $this->message(1, 'account created', 201, $data);
         } catch (QueryException $ex) {
 
@@ -53,10 +52,10 @@ class AccountController extends Controller
         return response()->json($response);
     }
 
-    public function getAllAccount(Request $request)
+    public function getAllAccounts(Request $request)
     {
         try {
-            $data = AccountsModel::getAll();
+            $data = AccountModel::getAll();
             if ($data->isEmpty()) {
                 $response = $this->message(0, 'accounts not found', 404, $data);
             } else {
@@ -68,10 +67,10 @@ class AccountController extends Controller
         return response()->json($response);
     }
 
-    public function getAccountById($id)
+    public function getAccountById(Request $request, $id)
     {
         try {
-            $data = AccountsModel::getById($id);
+            $data = AccountModel::getById($id);
             if ($data->isEmpty()) {
                 $response = $this->message(0, 'account not found', 404, $data);
             } else {
@@ -82,4 +81,22 @@ class AccountController extends Controller
         }
         return response()->json($response);
     }
+    public function deleteAccountById(Request $request, $id)
+    {
+        try {
+            $data = AccountModel::getById($id);
+            if ($data->isEmpty()) {
+                $response = $this->message(0, 'account not found', 404, $data);
+            } else {
+                $deleteQuery = AccountModel::deleteAccount($id);
+                $response = $this->message(1, 'deleted', 200);
+            }
+        } catch (QueryException $ex) {
+            $response = $this->message(0, 'error', 500, [], $ex);
+        }
+        return response()->json($response);
+    }
+
+    public function changePassword(Request $request, $id)
+    { }
 }
