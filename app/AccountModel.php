@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class AccountsModel extends Model implements JWTSubject
+class AccountModel extends Model implements JWTSubject
 {
     public static function createAccount($user)
     {

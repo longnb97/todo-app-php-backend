@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use App\AccountsModel;
+use App\AccountModel;
 
 use Illuminate\Database\QueryException;
 
@@ -17,7 +17,7 @@ use Illuminate\Database\QueryException;
 
 class AccountController extends Controller
 {
-    public function message($success, $message, $statusCode, $data = null, $err = null)
+    public function message($success, $message, $statusCode, $data = null, $err = 'none')
     {
         $response = [
             'success' => $success,
@@ -26,6 +26,7 @@ class AccountController extends Controller
             'data' => $data,
             'err' => $err
         ];
+
         return $response;
     }
 
@@ -46,25 +47,39 @@ class AccountController extends Controller
             $data = AccountsModel::createAccount($user);
             $response = $this->message(1, 'account created', 201, $data);
         } catch (QueryException $ex) {
-            $response = $this->message(1, 'account created', 201, null, $ex);
-        }
 
-        return response()->json($response, 201);
+            $response = $this->message(0, 'error', 500, null, $ex);
+        }
+        return response()->json($response);
     }
 
     public function getAllAccount(Request $request)
     {
-        $data = AccountsModel::getAll();
-        $response = $this->message(1, 'account found', 200, $data);
-        return response()->json($response, 201);
+        try {
+            $data = AccountsModel::getAll();
+            if ($data->isEmpty()) {
+                $response = $this->message(0, 'accounts not found', 404, $data);
+            } else {
+                $response = $this->message(1, 'accounts found', 200, $data);
+            }
+        } catch (QueryException $ex) {
+            $response = $this->message(0, 'error', 500, null, $ex);
+        }
+        return response()->json($response);
     }
 
     public function getAccountById($id)
     {
-        $data = AccountsModel::getById($id);
-        if (!empty($data)) {
-            $response = $this->message(1, 'account found', 200, $data);
+        try {
+            $data = AccountsModel::getById($id);
+            if ($data->isEmpty()) {
+                $response = $this->message(0, 'account not found', 404, $data);
+            } else {
+                $response = $this->message(1, 'account found', 200, $data);
+            }
+        } catch (QueryException $ex) {
+            $response = $this->message(0, 'error', 500, [], $ex);
         }
-        return response()->json($response, 201);
+        return response()->json($response);
     }
 }
