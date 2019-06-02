@@ -11,20 +11,21 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\AccountsModel;
 
+use Illuminate\Database\QueryException;
+
 // use App\Helpers;
 
 class AccountController extends Controller
 {
-    public function message($success, $message, $statusCode, $data)
+    public function message($success, $message, $statusCode, $data = null, $err = null)
     {
         $response = [
             'success' => $success,
             'message' => $message,
-            'statusCode' => $statusCode
+            'statusCode' => $statusCode,
+            'data' => $data,
+            'err' => $err
         ];
-        if(!empty($data)){
-            $response['data'] = $data;
-        }
         return $response;
     }
 
@@ -41,8 +42,13 @@ class AccountController extends Controller
         // //$token = JWTAuth::($user);
         // //$user['token'] = $token;
 
-        $data = AccountsModel::createAccount($user);
-        $response = $this->message(1, 'account created', 201, $data);
+        try {
+            $data = AccountsModel::createAccount($user);
+            $response = $this->message(1, 'account created', 201, $data);
+        } catch (QueryException $ex) {
+            $response = $this->message(1, 'account created', 201, null, $ex);
+        }
+
         return response()->json($response, 201);
     }
 
