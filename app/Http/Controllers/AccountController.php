@@ -13,7 +13,7 @@ use App\AccountsModel;
 
 // use App\Helpers;
 
-class Account extends Controller
+class AccountController extends Controller
 {
     public function message($success, $message, $statusCode, $data)
     {
@@ -26,39 +26,6 @@ class Account extends Controller
             $response['data'] = $data;
         }
         return $response;
-    }
-
-    public function login(Request $request)
-    {
-        // $out = new \Symfony\Component\Console\Output\ConsoleOutput();
-        // $out->writeln($request->password);
-
-        if (!empty($request->email) && !empty($request->password)) {
-            //đủ mk + tk
-            $data = DB::table('accounts')
-                ->where('email', '=', $request->email)
-                ->first();
-            if (empty($data)) {
-                // không có tk
-                $response = $this->message(0, 'account not found', 404, $data);
-                return response()->json($response);
-            } else {
-                //có tk
-                if (Hash::check($request->password, $data->password) == true) {
-                    //đúng mk
-                    $response = $this->message(1, 'login success', 200, $data);
-                    return response()->json($response);
-                } else {
-                    //sai mk
-                    $response = $this->message(0, 'wrong password', 401, null);
-                    return response()->json($response);
-                }
-            }
-        } else {
-            // thiếu mk hoặc tk
-            $response = $this->message(1, 'bad request', 400, null);
-        }
-        return response()->json($response);
     }
 
     public function createAccount(Request $request)

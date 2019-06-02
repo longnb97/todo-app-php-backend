@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Account;
+use App\Http\Controllers\AccountController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,16 +14,29 @@ use App\Http\Controllers\Account;
 |
 */
 
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+Route::post('/signup', 'AccountController@createAccount');
 
 
-Route::get('/user', function(Request $request){
-    return response()->json('Hello World! Welcome to codingpearls.com', 200);
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'accounts'
+], function ($router) {
+    Route::get('/', 'AccountController@getAllAccount');
+    Route::get('/{id}', 'AccountController@getAccountById');
 });
 
-Route::post('/login', 'Account@login');
-Route::post('/signup', 'Account@createAccount');
-Route::get('/accounts', 'Account@getAllAccount');
-Route::get('/accounts/{id}', 'Account@getAccountById');
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'auth'
+], function ($router) {
+    Route::post('/login', 'AccountController@handleLogin');
+});
+
+
+// Route::group([
+//     'middleware' => 'api',
+//     'prefix' => 'projects'
+// ], function ($router) {
+//     Route::post('/login', 'AccountController@login');
+// });
+

@@ -5,7 +5,9 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-class AccountsModel extends Model
+use Tymon\JWTAuth\Contracts\JWTSubject;
+
+class AccountsModel extends Model implements JWTSubject
 {
     public static function createAccount($user)
     {
@@ -20,5 +22,20 @@ class AccountsModel extends Model
     public static function getById($id)
     {
         return DB::table('accounts')->where('accountId', '=', $id)->get();
+    }
+
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    /**
+     * Return a key value array, containing any custom claims to be added to the JWT.
+     *
+     * @return array
+     */
+    public function getJWTCustomClaims()
+    {
+        return [];
     }
 }
