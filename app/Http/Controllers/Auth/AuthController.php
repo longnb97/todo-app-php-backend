@@ -38,6 +38,7 @@ class AuthController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
 
+    
     private function getToken($email, $password)
     {
         $token = null;
