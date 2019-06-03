@@ -25,13 +25,13 @@ class AuthController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    public function __construct() 
     {
         //$this->middleware('auth:api', ['except' => ['/auth/test']]);
     }
-    
+
     //NEVER EXPIRE TOKEN eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE1NTk1NDQ0NDUsImV4cCI6MTU2MzE0NDQ0NSwibmJmIjoxNTU5NTQ0NDQ1LCJqdGkiOiJWWmNGUjd1eHVoMmJoSU5MIiwic3ViIjoxLCJwcnYiOiJiNmY3ZjQ3YWNiZjFhNWVlMTFiMmIwMjhkYzU2YWEzNWYyMGMxYTdlIn0.FUwLiAewaoGxyKBo9dfaS7M_fmUpd6aWGOQhKDV0VqA
-    
+
     /**
      * Get a JWT via given credentials.
      *
@@ -57,7 +57,7 @@ class AuthController extends Controller
         }
         return $token;
     }
-    
+
     // public function loginTest(Request $req)
     // {
 
