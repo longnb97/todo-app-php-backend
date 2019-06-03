@@ -40,25 +40,25 @@ Route::group([
 
 
 Route::group([
-    'middleware' => ['jwt.auth'],
+    //'middleware' => ['jwt.auth'],
     'prefix' => 'tasks'
 ], function () {
-    // Route::get('/', 'ProjectController@getAllProjects');
-    // Route::post('/', 'ProjectController@createProject');
-    // Route::get('/all_projects/user/{userId}', 'ProjectController@getAccountAllProjects');
-    // Route::get('/{id}', 'ProjectController@getProjectById');   
-    // Route::put('/{id}', 'ProjectController@changeProjectProperties');
-    // Route::delete('/{id}', 'ProjectController@deleteProjectById');
+    Route::get('/', 'TaskController@getAllTasks');
+    Route::post('/', 'TaskController@createTask');   
+    Route::get('/project/{projectId}', 'TaskController@getProjectAllTasks');
+    Route::get('/{taskId}', 'TaskController@getTaskById');
+    Route::put('/{taskId}', 'TaskController@changeTaskProperties');
+    Route::delete('/{taskId}', 'TaskController@deleteTaskById');
 });
 
 Route::group([
     'middleware' => ['jwt.auth'],
     'prefix' => 'comments'
 ], function () {
-    // Route::get('/', 'ProjectController@getAllProjects');
-    // Route::post('/', 'ProjectController@createProject');
-    // Route::get('/all_projects/user/{userId}', 'ProjectController@getAccountAllProjects');
-    // Route::get('/{id}', 'ProjectController@getProjectById');   
-    // Route::put('/{id}', 'ProjectController@changeProjectProperties');
-    // Route::delete('/{id}', 'ProjectController@deleteProjectById');
+    // Route::get('/', 'CommentController@getAllProjects');
+    // Route::post('/', 'CommentController@createProject');
+    // Route::get('/all_projects/user/{userId}', 'CommentController@getAccountAllProjects');
+    // Route::get('/{id}', 'CommentController@getProjectById');   
+    // Route::put('/{id}', 'CommentController@changeProjectProperties');
+    // Route::delete('/{id}', 'CommentController@deleteProjectById');
 });

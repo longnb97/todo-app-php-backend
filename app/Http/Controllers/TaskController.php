@@ -4,7 +4,118 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Helpers\ResponseService;
+
+use App\Task as TaskModel;
+
 class TaskController extends Controller
 {
-    //
+
+
+    // $table->increments('id');
+    // $table->string('owner'); // nguoi tao
+    // $table->string('participants'); // nguoi tham gia => luu id ngu?i tham gia, phân cách = ,
+    // $table->date('dueDate'); //ngay het han
+    // $table->string('projectId'); //projectId
+    // $table->string('status'); // doing, done , ...
+    // $table->string('description')->default(' ');
+
+    public function createTask(Request $request)
+    {
+        $task =  [
+            'owner' => $request->owner,
+            'participants' => $request->participants,
+            'dueDate' => $request->dueDate,
+            'projectId' => $request->projectId,
+            'status' => 'Todo',
+            'description' => $request->description,
+        ];
+        // //$token = JWTAuth::($user);
+        // //$user['token'] = $token;
+
+        try {
+            $data = TaskModel::createTask($task);
+            return ResponseService::response(1, 'task created', 201, $data);
+        } catch (QueryException $ex) {
+            return ResponseService::response(0, 'error', 500, null, $ex);
+        }
+    }
+
+    public function getAllTasks(Request $request)
+    {
+        try {
+            $data = TaskModel::getAll();
+            if ($data->isEmpty()) {
+                return ResponseService::response(0, 'tasks not found', 404, $data);
+            } else {
+                return ResponseService::response(1, 'tasks found', 200, $data);
+            }
+        } catch (QueryException $ex) {
+            return ResponseService::response(0, 'error', 500, null, $ex);
+        }
+    }
+
+    public function getTaskById(Request $request, $taskId)
+    {
+        try {
+            $data = TaskModel::getById($taskId);
+            if ($data->isEmpty()) {
+                return ResponseService::response(0, 'task not found', 404, $data);
+            } else {
+                return ResponseService::response(1, 'task found', 200, $data);
+            }
+        } catch (QueryException $ex) {
+            return ResponseService::response(0, 'error', 500, [], $ex);
+        }
+    }
+
+    public function deleteTaskById(Request $request, $taskId)
+    {
+        try {
+            $data = TaskModel::getById($taskId);
+            if ($data->isEmpty()) {
+                return ResponseService::response(0, 'task not found', 404, $data);
+            } else {
+                $deleteQuery = TaskModel::deleteTask($taskId);
+                return ResponseService::response(1, ' task deleted', 200);
+            }
+        } catch (QueryException $ex) {
+            return ResponseService::response(0, 'error', 500, [], $ex);
+        }
+    }
+
+    public function getProjectAllTasks(Request $request, $projectId){
+        try {
+            $data = TaskModel::getProjectAllTasks($projectId);
+            if ($data->isEmpty()) {
+                return ResponseService::response(0, 'project not found', 404, $data);
+            } else {
+                return ResponseService::response(1, 'project found', 200, $data);
+            }
+        } catch (QueryException $ex) {
+            return ResponseService::response(0, 'error', 500, [], $ex);
+        }
+    }
+
+    public function changeTaskProperties(Request $request, $taskId){
+        $project =  [
+            'name' => $request->name,
+            'type' => $request->type,
+            'description' => $request->description,
+            'accountId' => $request->accountId,
+            'participants' => $request->participants,
+            'dueDate' => $request->dueDate,
+        ];
+        try {
+            $data = ProjectModel::getById($id);
+            if ($data->isEmpty()) {
+                return ResponseService::response(0, 'projects not found', 404, $data);
+            } else {
+                $update = ProjectModel::changeProperties($project, $id);
+                return ResponseService::response(1, 'updated', 200, $update);
+            }
+        } catch (QueryException $ex) {
+            return ResponseService::response(0, 'error', 500, [], $ex);
+        }
+    }
 }

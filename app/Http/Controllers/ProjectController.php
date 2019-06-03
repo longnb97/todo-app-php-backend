@@ -82,6 +82,7 @@ class ProjectController extends Controller
         }
     }
 
+    //xem lai
     public function getAccountAllProjects(Request $request, $userId)
     {
         $project =  [
