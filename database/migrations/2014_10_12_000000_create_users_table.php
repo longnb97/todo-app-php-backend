@@ -5,6 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use Symfony\Component\HttpFoundation\AcceptHeader;
 use Illuminate\Support\Facades\Date;
+use Illuminate\Support\Facades\Hash;
 
 class CreateUsersTable extends Migration
 {
@@ -17,7 +18,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
 
-            $table->increments('taskId');
+            $table->increments('id');
             $table->string('owner'); // nguoi tao
             $table->string('participants'); // nguoi tham gia => luu id ngu?i tham gia, phân cách = ,
             $table->date('dueDate'); //ngay het han
@@ -31,7 +32,7 @@ class CreateUsersTable extends Migration
 
         Schema::create('comments', function (Blueprint $table) {
 
-            $table->increments('commentId');
+            $table->increments('id');
             $table->string('accountId'); //accountId
             $table->string('type')->default('text'); //text, image...
             $table->string('content');
@@ -42,7 +43,7 @@ class CreateUsersTable extends Migration
         });
 
         Schema::create('accounts', function (Blueprint $table) {
-            $table->increments('accountId');
+            $table->increments('id');
             $table->string('email')->unique();
             $table->string('password');
             $table->string('token')->nullable();
@@ -57,7 +58,7 @@ class CreateUsersTable extends Migration
 
         Schema::create('projects', function (Blueprint $table) {
 
-            $table->increments('projectId');
+            $table->increments('id');
             $table->string('name');
             $table->string('type'); // kieu project ...
             $table->string('description')->default(' ');
@@ -94,29 +95,29 @@ class CreateUsersTable extends Migration
         DB::table('accounts')->insert(
             [
                 'email' => 'long',
-                'password' => '123',
+                'password' => Hash::make('1'),
                 // 'token' => 'Bearer aaaa',
                 'name' => 'Nguyễn Bảo Long',
-                'job' => 'Student',
+                'job' => 'Student pass 1',
                 'company' => 'Pal'
             ]
         );
         DB::table('accounts')->insert(
             [
                 'email' => 'quan',
-                'password' => '123',
+                'password' => Hash::make('2'),
                 // 'token' => 'Bearer aaaa',
                 'name' => 'Nguyễn Tiến Quân',
-                'job' => 'Đồng đoàn',
+                'job' => 'Đồng đoàn pass 2',
                 'company' => 'ko biet'
             ],
         );
         DB::table('accounts')->insert(
             [
                 'email' => 'tongthang',
-                'password' => '123',
+                'password' => Hash::make('3'),
                 // 'token' => 'Bearer aaaa',
-                'name' => 'Nguyễn Tiến Thắng',
+                'name' => 'Nguyễn Tiến Thắng pass 3',
                 'job' => 'óc chó',
                 'company' => 'ko biet'
             ],
@@ -124,9 +125,9 @@ class CreateUsersTable extends Migration
         DB::table('accounts')->insert(
             [
                 'email' => 'tuananh',
-                'password' => '123',
+                'password' => Hash::make('4'),
                 // 'token' => 'Bearer aaaa',
-                'name' => 'Nguyễn Tiến Anh',
+                'name' => 'Nguyễn Tiến Anh pass 4',
                 'job' => 'óc',
                 'company' => 'Icheck'
             ],

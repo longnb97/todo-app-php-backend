@@ -1,16 +1,24 @@
 <?php
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\AccountController;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\TestController;
 
+Route::get('/index', function () {
+    return '<h1>To-do Webservice Api</h1>';
+});
 
 Route::post('/signup', 'AccountController@createAccount');
 
+Route::group([
+    //'middleware' => ['jwt.auth','api-header'],
+    'prefix' => 'auth'
+], function () {
+    Route::post('/test', 'AuthController@loginTest');
+    Route::post('/login', 'AuthController@handleLogin');
+    Route::get('/check_auth', 'AuthController@me');
+});
 
 Route::group([
-    'middleware' => 'api',
+    'middleware' => ['jwt.auth'],
     'prefix' => 'accounts'
 ], function () {
     Route::get('/', 'AccountController@getAllAccounts');
@@ -19,24 +27,38 @@ Route::group([
 });
 
 Route::group([
-    'middleware' => 'api',
-    'prefix' => 'auth'
-], function () {
-    Route::post('/test', 'TestController@login');
-    Route::post('/login', 'AuthController@handleLogin');
-});
-
-
-Route::group([
-    'middleware' => 'api',
+    'middleware' => ['jwt.auth'],
     'prefix' => 'projects'
 ], function () {
     Route::get('/', 'ProjectController@getAllProjects');
     Route::post('/', 'ProjectController@createProject');
     Route::get('/all_projects/user/{userId}', 'ProjectController@getAccountAllProjects');
-    Route::get('/{id}', 'ProjectController@getProjectById');   
+    Route::get('/{id}', 'ProjectController@getProjectById');
     Route::put('/{id}', 'ProjectController@changeProjectProperties');
     Route::delete('/{id}', 'ProjectController@deleteProjectById');
 });
 
 
+Route::group([
+    'middleware' => ['jwt.auth'],
+    'prefix' => 'tasks'
+], function () {
+    // Route::get('/', 'ProjectController@getAllProjects');
+    // Route::post('/', 'ProjectController@createProject');
+    // Route::get('/all_projects/user/{userId}', 'ProjectController@getAccountAllProjects');
+    // Route::get('/{id}', 'ProjectController@getProjectById');   
+    // Route::put('/{id}', 'ProjectController@changeProjectProperties');
+    // Route::delete('/{id}', 'ProjectController@deleteProjectById');
+});
+
+Route::group([
+    'middleware' => ['jwt.auth'],
+    'prefix' => 'comments'
+], function () {
+    // Route::get('/', 'ProjectController@getAllProjects');
+    // Route::post('/', 'ProjectController@createProject');
+    // Route::get('/all_projects/user/{userId}', 'ProjectController@getAccountAllProjects');
+    // Route::get('/{id}', 'ProjectController@getProjectById');   
+    // Route::put('/{id}', 'ProjectController@changeProjectProperties');
+    // Route::delete('/{id}', 'ProjectController@deleteProjectById');
+});
