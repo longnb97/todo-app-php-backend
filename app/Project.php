@@ -20,12 +20,12 @@ class Project extends Model implements JWTSubject
 
     public static function getById($id)
     {
-        return DB::table('projects')->where('projectId', '=', $id)->get();
+        return DB::table('projects')->where('id', '=', $id)->get();
     }
 
     public static function deleteProject($id)
     {
-        return DB::table('projects')->where('projectId', '=', $id)->delete();
+        return DB::table('projects')->where('id', '=', $id)->delete();
     }
     public static function getAccountProjects($userId)
     {
@@ -34,7 +34,7 @@ class Project extends Model implements JWTSubject
 
     public static function changeProperties($project, $id)
     {
-        $query = DB::table('projects')->where('projectId', '=', $id)->update($project);
+        $query = DB::table('projects')->where('id', '=', $id)->update($project);
         return $query;
     }
 

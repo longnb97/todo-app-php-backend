@@ -14,13 +14,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class Account extends Authenticatable implements JWTSubject
 {
     use Notifiable;
-    // protected $fillable = [
-    //     'name', 'email', 'password',
-    // ];
-    
-    // protected $hidden = [
-    //     'password', 'remember_token',
-    // ];
 
     public static function createAccount($user)
     {
@@ -34,18 +27,18 @@ class Account extends Authenticatable implements JWTSubject
 
     public static function getById($id)
     {
-        return DB::table('accounts')->where('accountId', '=', $id)->get();
+        return DB::table('accounts')->where('id', '=', $id)->get();
     }
 
     public static function deleteAccount($id)
     {
-        return DB::table('accounts')->where('accountId', '=', $id)->delete();
+        return DB::table('accounts')->where('id', '=', $id)->delete();
     }
 
     public static function changePassword($id, $newPassword)
     {
         $newPass = Hash::make($newPassword);
-        $query = DB::table('accounts')->where(['accountId', '=', $id])->update(['password' => $newPass]);
+        $query = DB::table('accounts')->where(['id', '=', $id])->update(['password' => $newPass]);
         return  query;
     }
 

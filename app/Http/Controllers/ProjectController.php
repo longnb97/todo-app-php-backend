@@ -8,6 +8,8 @@ use App\Project as ProjectModel;
 use Illuminate\Database\QueryException;
 use PhpParser\Node\Stmt\TryCatch;
 
+use App\Helpers\ResponseService;
+
 class ProjectController extends Controller
 {
 
@@ -18,17 +20,6 @@ class ProjectController extends Controller
     // $table->string('accountId')->nullable();
     // $table->string('participants'); // nguoi tham gia 
     // $table->date('dueDate')->nullable();
-    public function message($success, $message, $statusCode, $data = 'none', $err = 'none')
-    {
-        $response = [
-            'success' => $success,
-            'message' => $message,
-            'statusCode' => $statusCode,
-            'data' => $data,
-            'err' => $err
-        ];
-        return $response;
-    }
 
     public function createProject(Request $request)
     {
@@ -43,11 +34,10 @@ class ProjectController extends Controller
 
         try {
             $data = ProjectModel::createProject($project);
-            $response = $this->message(1, 'project created', 201, $data);
+            return ResponseService::response(1, 'project created', 201, $data);
         } catch (QueryException $ex) {
-            $response = $this->message(0, 'error', 500, null, $ex);
+            return ResponseService::response(0, 'error', 500, null, $ex);
         }
-        return response()->json($response);
     }
 
     public function getAllProjects(Request $request)
@@ -55,14 +45,13 @@ class ProjectController extends Controller
         try {
             $data = ProjectModel::getAll();
             if ($data->isEmpty()) {
-                $response = $this->message(0, 'projects not found', 404, $data);
+                return ResponseService::response(0, 'projects not found', 404, $data);
             } else {
-                $response = $this->message(1, 'project found', 200, $data);
+                return ResponseService::response(1, 'project found', 200, $data);
             }
         } catch (QueryException $ex) {
             $response = $this->message(0, 'error', 500, null, $ex);
         }
-        return response()->json($response);
     }
 
     public function getProjectById(Request $request, $id)
@@ -70,29 +59,27 @@ class ProjectController extends Controller
         try {
             $data = ProjectModel::getById($id);
             if ($data->isEmpty()) {
-                $response = $this->message(0, 'project not found', 404, $data);
+                return ResponseService::response(0, 'project not found', 404, $data);
             } else {
-                $response = $this->message(1, 'project found', 200, $data);
+                return ResponseService::response(1, 'project found', 200, $data);
             }
         } catch (QueryException $ex) {
-            $response = $this->message(0, 'error', 500, [], $ex);
+            return ResponseService::response(0, 'error', 500, [], $ex);
         }
-        return response()->json($response);
     }
     public function deleteProjectById(Request $request, $id)
     {
         try {
             $data = ProjectModel::getById($id);
             if ($data->isEmpty()) {
-                $response = $this->message(0, 'project not found', 404, $data);
+                return ResponseService::response(0, 'project not found', 404, $data);
             } else {
                 $deleteQuery = ProjectModel::deleteProject($id);
-                $response = $this->message(1, 'deleted', 200);
+                return ResponseService::response(1, 'deleted', 200);
             }
         } catch (QueryException $ex) {
-            $response = $this->message(0, 'error', 500, [], $ex);
+            return ResponseService::response(0, 'error', 500, [], $ex);
         }
-        return response()->json($response);
     }
 
     public function getAccountAllProjects(Request $request, $userId)
@@ -108,14 +95,13 @@ class ProjectController extends Controller
         try {
             $data = ProjectModel::getAccountProjects($project);
             if ($data->isEmpty()) {
-                $response = $this->message(0, 'project not found', 404, $data);
+                return ResponseService::response(0, 'project not found', 404, $data);
             } else {
-                $response = $this->message(1, 'project found', 200, $data);
+                return ResponseService::response(1, 'project found', 200, $data);
             }
         } catch (QueryException $ex) {
-            $response = $this->message(0, 'error', 500, [], $ex);
+            return ResponseService::response(0, 'error', 500, [], $ex);
         }
-        return response()->json($response);
     }
 
     public function changeProjectProperties(Request $request, $id)
@@ -131,15 +117,14 @@ class ProjectController extends Controller
         try {
             $data = ProjectModel::getById($id);
             if ($data->isEmpty()) {
-                $response = $this->message(0, 'projects not found', 404, $data);
+                return ResponseService::response(0, 'projects not found', 404, $data);
             } else {
                 $update = ProjectModel::changeProperties($project, $id);
-                $response = $this->message(1, 'updated', 200, $update);
+                return ResponseService::response(1, 'updated', 200, $update);
             }
         } catch (QueryException $ex) {
-            $response = $this->message(0, 'error', 500, [], $ex);
+            return ResponseService::response(0, 'error', 500, [], $ex);
         }
-        return response()->json($response);
     }
 
     // public function addParticipant(Request $request, $id)
@@ -147,14 +132,13 @@ class ProjectController extends Controller
     //     try {
     //         $data = AccountModel::getById($id);
     //         if ($data->isEmpty()) {
-    //             $response = $this->message(0, 'project not found', 404, $data);
+    //            return ResponseService::response(0, 'project not found', 404, $data);
     //         } else {
     //             $deleteQuery = AccountModel::deleteAccount($id);
-    //             $response = $this->message(1, 'deleted', 200);
+    //             return ResponseService::response(1, 'deleted', 200);
     //         }
     //     } catch (QueryException $ex) {
-    //         $response = $this->message(0, 'error', 500, [], $ex);
+    //         return ResponseService::response(0, 'error', 500, [], $ex);
     //     }
-    //     return response()->json($response);
     // }
 }
