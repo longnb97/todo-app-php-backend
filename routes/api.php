@@ -14,11 +14,11 @@ Route::group([
 ], function () {
     Route::post('/test', 'AuthController@loginTest');
     Route::post('/login', 'AuthController@handleLogin');
-    Route::get('/check_auth', 'AuthController@me');
+    Route::get('/check_auth', 'AuthController@me');// checkout
 });
 
 Route::group([
-    'middleware' => ['jwt.auth'],
+    'middleware' => ['jwt.auth'],// has 
     'prefix' => 'accounts'
 ], function () {
     Route::get('/', 'AccountController@getAllAccounts');
