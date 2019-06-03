@@ -62,3 +62,19 @@ Route::group([
     // Route::put('/{id}', 'CommentController@changeProjectProperties');
     // Route::delete('/{id}', 'CommentController@deleteProjectById');
 });
+
+
+
+//// quandev
+
+Route::group([
+    //'middleware' => ['jwt.auth'],
+    'prefix' => 'task-participants'
+], function () {
+    Route::get('/', 'TaskController@getAllTaskParticipants');
+    Route::post('/', 'TaskController@createTaskParticipants');   
+    Route::get('/project/{projectId}', 'TaskController@getProjectAllTasks');
+    Route::get('/{taskId}', 'TaskController@getTaskById');
+    Route::put('/{taskId}', 'TaskController@changeTaskProperties');
+    Route::delete('/{taskId}', 'TaskController@deleteTaskById');
+});
