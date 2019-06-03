@@ -14,11 +14,11 @@ Route::group([
 ], function () {
     Route::post('/test', 'AuthController@loginTest');
     Route::post('/login', 'AuthController@handleLogin');
-    Route::get('/check_auth', 'AuthController@me');
+    Route::get('/check_auth', 'AuthController@me');// checkout
 });
 
 Route::group([
-    'middleware' => ['jwt.auth'],
+    'middleware' => ['jwt.auth'],// has 
     'prefix' => 'accounts'
 ], function () {
     Route::get('/', 'AccountController@getAllAccounts');
@@ -61,4 +61,20 @@ Route::group([
     // Route::get('/{id}', 'CommentController@getProjectById');   
     // Route::put('/{id}', 'CommentController@changeProjectProperties');
     // Route::delete('/{id}', 'CommentController@deleteProjectById');
+});
+
+
+
+//// quandev
+
+Route::group([
+    //'middleware' => ['jwt.auth'],
+    'prefix' => 'task-participants'
+], function () {
+    Route::get('/', 'TaskController@getAllTaskParticipants');
+    Route::post('/', 'TaskController@createTaskParticipants');   
+    Route::get('/project/{projectId}', 'TaskController@getProjectAllTasks');
+    Route::get('/{taskId}', 'TaskController@getTaskById');
+    Route::put('/{taskId}', 'TaskController@changeTaskProperties');
+    Route::delete('/{taskId}', 'TaskController@deleteTaskById');
 });
