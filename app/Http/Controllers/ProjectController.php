@@ -77,7 +77,7 @@ class ProjectController extends Controller
                 $deleteQuery = ProjectModel::deleteProject($id);
                 return ResponseService::response(1, 'deleted', 200);
             }
-        } catch (QueryException $ex) {
+        } catch (QueryException $ex) { 
             return ResponseService::response(0, 'error', 500, [], $ex); 
         } 
     }
