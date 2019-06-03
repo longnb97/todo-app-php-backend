@@ -79,7 +79,7 @@ class ProjectController extends Controller
             }
         } catch (QueryException $ex) {
             return ResponseService::response(0, 'error', 500, [], $ex); 
-        }
+        } 
     }
 
     //xem lai
