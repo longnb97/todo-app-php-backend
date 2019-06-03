@@ -17,7 +17,7 @@ class AccountController extends Controller
     public function createAccount(Request $request)
     {
         $user =  [
-            'email' => $request->email,
+            'email' => $request->email, 
             'password' => bcrypt($request->password),
             'token' => null,
             'name' => $request->name,
