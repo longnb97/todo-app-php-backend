@@ -10,8 +10,8 @@ class InsertData extends Migration
     /**`
      * Run the migrations.
      *
-     * @return void
-     */
+     * @return void adsad
+     */ 
     public function up()
     {
         DB::table('accounts')->insert(
