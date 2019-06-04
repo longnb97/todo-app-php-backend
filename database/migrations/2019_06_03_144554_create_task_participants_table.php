@@ -33,44 +33,45 @@ class CreateTaskParticipantsTable extends Migration
             [
                 'project_id' => 1,
                 'account_id' => 1
-            ],
+            ]
         );
+        
         DB::table('project_participants')->insert(
             [
                 'project_id' => 1,
                 'account_id' => 2
-            ],
+            ]
         );
         DB::table('project_participants')->insert(
             [
                 'project_id' => 1,
                 'account_id' => 3
-            ],
+            ]
         );
         DB::table('project_participants')->insert(
             [
                 'project_id' => 2,
                 'account_id' => 1
-            ],
+            ]
         );
         /////
         DB::table('task_participants')->insert(
             [
                 'task_id' => 1,
                 'account_id' => 1
-            ],
+            ]
         );
         DB::table('task_participants')->insert(
             [
                 'task_id' => 1,
                 'account_id' => 2
-            ],
+            ]
         );
         DB::table('task_participants')->insert(
             [
                 'task_id' => 2,
                 'account_id' => 1
-            ],
+            ]
         );
     }
 

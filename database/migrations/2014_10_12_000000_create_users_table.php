@@ -30,10 +30,6 @@ class CreateUsersTable extends Migration
         });
 
         Schema::create('comments', function (Blueprint $table) {
-<<<<<<< HEAD
-=======
-            Schema::dropIfExists('comments');
->>>>>>> 68a52ff065baac3740972ba57b1ad904bfb070c7
             $table->increments('id');
             $table->string('accountId'); //accountId
             $table->string('type')->default('text'); //text, image...
@@ -61,10 +57,6 @@ class CreateUsersTable extends Migration
         });
 
         Schema::create('projects', function (Blueprint $table) {
-<<<<<<< HEAD
-=======
-            Schema::dropIfExists('projects');
->>>>>>> 68a52ff065baac3740972ba57b1ad904bfb070c7
             $table->increments('id');
             $table->string('name');
             $table->string('type'); // kieu project ...
