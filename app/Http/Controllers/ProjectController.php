@@ -107,7 +107,6 @@ class ProjectController extends Controller
             'type' => $request->type,
             'description' => $request->description,
             'account_id' => $request->accountId,
-            'participants' => $request->participants,
             'due_date' => $request->dueDate,
         ];
         try {
@@ -123,18 +122,4 @@ class ProjectController extends Controller
         }
     }
 
-    // public function addParticipant(Request $request, $id)
-    // {
-    //     try {
-    //         $data = AccountModel::getById($id);
-    //         if ($data->isEmpty()) {
-    //            return ResponseService::response(0, 'project not found', 404, $data);
-    //         } else {
-    //             $deleteQuery = AccountModel::deleteAccount($id);
-    //             return ResponseService::response(1, 'deleted', 200);
-    //         } 
-    //     } catch (QueryException $ex) {
-    //         return ResponseService::response(0, 'error', 500, [], $ex);
-    //     }
-    // }
 }
