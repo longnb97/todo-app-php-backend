@@ -71,10 +71,11 @@ Route::group([
     //'middleware' => ['jwt.auth'],
     'prefix' => 'task-participants'
 ], function () {
-    Route::get('/', 'TaskController@getAllTaskParticipants');
-    Route::post('/', 'TaskController@createTaskParticipants');   
-    Route::get('/project/{projectId}', 'TaskController@getProjectAllTasks');
-    Route::get('/{taskId}', 'TaskController@getTaskById');
-    Route::put('/{taskId}', 'TaskController@changeTaskProperties');
-    Route::delete('/{taskId}', 'TaskController@deleteTaskById');
+    Route::get('/', 'TaskParticipantsController@getAllTaskParticipants');
+    Route::post('/', 'TaskParticipantsController@createTaskParticipants');   
+    Route::get('/task-filter/{projectId}', 'TaskParticipantsController@getTaskParticipantsByTaskId');
+    Route::get('/project-filter/{projectId}', 'TaskParticipantsController@getTaskParticipantsByTaskId');
+    Route::get('/{taskId}', 'TaskParticipantsController@getTaskById');
+    Route::put('/{taskId}', 'TaskParticipantsController@changeTaskProperties');
+    Route::delete('/{taskId}', 'TaskParticipantsController@deleteTaskById');
 });
