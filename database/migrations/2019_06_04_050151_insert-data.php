@@ -20,7 +20,7 @@ class InsertData extends Migration
                 'email' => 'long',
                 'password' => Hash::make('1'),
                 // 'token' => 'Bearer aaaa',
-                'name' => 'Nguyễn Bảo Long',
+                'name' => 'Nguyễn Bảo Long', 
                 'job' => 'Student pass 1',
                 'company' => 'Pal'
             ]
