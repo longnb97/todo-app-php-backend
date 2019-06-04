@@ -36,6 +36,7 @@ class CreateUsersTable extends Migration
             $table->string('type'); // kieu project ...
             $table->string('description')->default(' ');
             $table->integer('account_id')->unsigned();
+            $table->string('participants'); // nguoi tham gia 
             $table->date('due_date')->nullable();
             $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
@@ -44,6 +45,7 @@ class CreateUsersTable extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->increments('id');
             $table->string('owner'); // nguoi tao
+            $table->string('participants'); // nguoi tham gia => luu id ngu?i tham gia, phân cách = ,
             $table->date('due_date'); //ngay het han
             $table->integer('project_id')->unsigned()->unique(); //projectId
             $table->string('status'); // doing, done , ...
@@ -55,16 +57,16 @@ class CreateUsersTable extends Migration
         Schema::create('comments', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('account_id')->unsigned();; //accountId
-            $table->string('type')->default('text'); //text, image... 
-            $table->string('content'); 
+            $table->string('type')->default('text'); //text, image...
+            $table->string('content');
             $table->integer('task_id')->unsigned();; //taskId
             $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
-            $table->boolean('active')->default(1); 
+            $table->boolean('active')->default(1);
         });
         Schema::create('task_participants', function (Blueprint $table) {
             $table->integer('task_id')->unsigned();
-            $table->integer('account_id')->unsigned(); 
+            $table->integer('account_id')->unsigned();
             $table->boolean('active')->default(1);
             $table->timestamps();
         });
@@ -99,7 +101,7 @@ class CreateUsersTable extends Migration
     }
 
     /**
-     * Reverse the migrations. 
+     * Reverse the migrations.
      *
      * @return void
      */

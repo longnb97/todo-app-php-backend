@@ -24,9 +24,10 @@ class TaskController extends Controller
     {
         $task =  [
             'owner' => $request->owner,
-            'due_date' => $request->dueDate,
-            'project_id' => $request->projectId,
-            'status' => $request->status,
+            'participants' => $request->participants,
+            'dueDate' => $request->dueDate,
+            'projectId' => $request->projectId,
+            'status' => 'Todo',
             'description' => $request->description,
         ];
         // //$token = JWTAuth::($user);
