@@ -11,8 +11,8 @@ class InsertData extends Migration
     /**`
      * Run the migrations.
      *
-     * @return void adsad
-     */ 
+     * @return void
+     */
     public function up()
     {
         DB::table('accounts')->insert(
@@ -20,7 +20,7 @@ class InsertData extends Migration
                 'email' => 'long',
                 'password' => Hash::make('1'),
                 // 'token' => 'Bearer aaaa',
-                'name' => 'Nguyễn Bảo Long',
+                'name' => 'Nguyễn Bảo Long', 
                 'job' => 'Student pass 1',
                 'company' => 'Pal'
             ]
@@ -192,7 +192,7 @@ class InsertData extends Migration
     }
 
     /**
-     * Reverse the migrations. 
+     * Reverse the migrations.
      *
      * @return void
      */
