@@ -132,7 +132,7 @@ class ProjectController extends Controller
     //         } else {
     //             $deleteQuery = AccountModel::deleteAccount($id);
     //             return ResponseService::response(1, 'deleted', 200);
-    //         }
+    //         } 
     //     } catch (QueryException $ex) {
     //         return ResponseService::response(0, 'error', 500, [], $ex);
     //     }
