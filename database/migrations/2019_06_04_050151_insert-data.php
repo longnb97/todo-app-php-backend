@@ -20,7 +20,7 @@ class InsertData extends Migration
                 'email' => 'long',
                 'password' => Hash::make('1'),
                 // 'token' => 'Bearer aaaa',
-                'name' => 'Nguyễn Bảo Long',
+                'name' => 'Nguyễn Bảo Long', 
                 'job' => 'Student pass 1',
                 'company' => 'Pal'
             ]
@@ -63,7 +63,6 @@ class InsertData extends Migration
                 'type' => 'homework',
                 'description' => 'Co gang lam 1 to do app',
                 'account_id' => 2,
-                'participants' => '1;2;3',
                 'due_date' => '2017-05-03'
             ]
         );
@@ -73,7 +72,6 @@ class InsertData extends Migration
                 'type' => 'university project',
                 'description' => 'chìa khóa ra trường, làm gì h',
                 'account_id' => 2,
-                'participants' => '1;2;3;4',
                 'due_date' => '2018-05-03'
             ]
         );
@@ -81,7 +79,6 @@ class InsertData extends Migration
         DB::table('tasks')->insert(
             [
                 'owner' => '1',
-                'participants' => '1;2;3',
                 'due_date' => '2018-05-03',
                 'project_id' => 1,
                 'status' => 'doing',
@@ -91,7 +88,6 @@ class InsertData extends Migration
         DB::table('tasks')->insert(
             [
                 'owner' => '1',
-                'participants' => '1',
                 'due_date' => '2018-05-03',
                 'project_id' => 1,
                 'status' => 'doing',
@@ -101,7 +97,6 @@ class InsertData extends Migration
         DB::table('tasks')->insert(
             [
                 'owner' => '2',
-                'participants' => '1;2',
                 'due_date' => '2019-05-03',
                 'project_id' => 2,
                 'status' => 'done',
@@ -156,18 +151,18 @@ class InsertData extends Migration
                 'account_id' => 2
             ]
         );
-        // DB::table('project_participants')->insert(
-        //     [
-        //         'project_id' => 1,
-        //         'account_id' => 3
-        //     ]
-        // );
-        // DB::table('project_participants')->insert(
-        //     [
-        //         'project_id' => 2,
-        //         'account_id' => 1
-        //     ]
-        // );
+        DB::table('project_participants')->insert(
+            [
+                'project_id' => 1,
+                'account_id' => 3
+            ]
+        );
+        DB::table('project_participants')->insert(
+            [
+                'project_id' => 2,
+                'account_id' => 1
+            ]
+        );
 
         /////
 
@@ -183,12 +178,12 @@ class InsertData extends Migration
                 'account_id' => 2
             ]
         );
-        // DB::table('task_participants')->insert(
-        //     [
-        //         'task_id' => 2,
-        //         'account_id' => 1
-        //     ]
-        // );
+        DB::table('task_participants')->insert(
+            [
+                'task_id' => 2,
+                'account_id' => 1
+            ]
+        );
     }
 
     /**

@@ -9,6 +9,7 @@ use Illuminate\Database\QueryException;
 use PhpParser\Node\Stmt\TryCatch;
 
 use App\Helpers\ResponseService;
+use App\Helpers\DebugService as Console;
 
 class ProjectController extends Controller
 {
@@ -27,9 +28,8 @@ class ProjectController extends Controller
             'name' => $request->name,
             'type' => $request->type,
             'description' => $request->description,
-            'accountId' => $request->accountId,
-            'participants' => $request->participants,
-            'dueDate' => $request->dueDate,
+            'account_id' => $request->accountId,
+            'due_date' => $request->dueDate,
         ];
 
         try {
@@ -69,6 +69,7 @@ class ProjectController extends Controller
     }
     public function deleteProjectById(Request $request, $id)
     {
+        //Console::log('aaa');
         try {
             $data = ProjectModel::getById($id);
             if ($data->isEmpty()) {
@@ -77,28 +78,20 @@ class ProjectController extends Controller
                 $deleteQuery = ProjectModel::deleteProject($id);
                 return ResponseService::response(1, 'deleted', 200);
             }
-        } catch (QueryException $ex) { 
-            return ResponseService::response(0, 'error', 500, [], $ex); 
-        } 
+        } catch (QueryException $ex) {
+            return ResponseService::response(0, 'error', 500, [], $ex);
+        }
     }
 
     //xem lai
     public function getAccountAllProjects(Request $request, $userId)
     {
-        $project =  [
-            'name' => $request->name,
-            'type' => $request->type,
-            'description' => $request->description,
-            'accountId' => $request->accountId,
-            'participants' => $request->participants,
-            'dueDate' => $request->dueDate,
-        ];
         try {
-            $data = ProjectModel::getAccountProjects($project);
+            $data = ProjectModel::getAccountProjects($userId);
             if ($data->isEmpty()) {
                 return ResponseService::response(0, 'project not found', 404, $data);
             } else {
-                return ResponseService::response(1, 'project found', 200, $data);
+                return ResponseService::response(1, 'projects found', 200, $data);
             }
         } catch (QueryException $ex) {
             return ResponseService::response(0, 'error', 500, [], $ex);
@@ -111,9 +104,8 @@ class ProjectController extends Controller
             'name' => $request->name,
             'type' => $request->type,
             'description' => $request->description,
-            'accountId' => $request->accountId,
-            'participants' => $request->participants,
-            'dueDate' => $request->dueDate,
+            'account_id' => $request->accountId,
+            'due_date' => $request->dueDate,
         ];
         try {
             $data = ProjectModel::getById($id);
@@ -128,18 +120,4 @@ class ProjectController extends Controller
         }
     }
 
-    // public function addParticipant(Request $request, $id)
-    // {
-    //     try {
-    //         $data = AccountModel::getById($id);
-    //         if ($data->isEmpty()) {
-    //            return ResponseService::response(0, 'project not found', 404, $data);
-    //         } else {
-    //             $deleteQuery = AccountModel::deleteAccount($id);
-    //             return ResponseService::response(1, 'deleted', 200);
-    //         }
-    //     } catch (QueryException $ex) {
-    //         return ResponseService::response(0, 'error', 500, [], $ex);
-    //     }
-    // }
 }
