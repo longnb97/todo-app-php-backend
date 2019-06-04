@@ -5,6 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 // merge vs dev
+// merge vs dev 1
 class InsertData extends Migration
 {
     /**`
