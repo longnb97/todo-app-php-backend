@@ -55,7 +55,7 @@ class CreateUsersTable extends Migration
         });
         Schema::create('comments', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('account_id')->unsigned();; //accountId
+            $table->integer('account_id')->unsigned();; //accountId 
             $table->string('type')->default('text'); //text, image...
             $table->string('content');
             $table->integer('task_id')->unsigned();; //taskId
@@ -99,8 +99,8 @@ class CreateUsersTable extends Migration
         });
     }
 
-    /** 
-     * Reverse the migrations.
+    /**
+     * Reverse the migrations. 
      *
      * @return void
      */
