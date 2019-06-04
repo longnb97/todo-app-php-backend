@@ -27,9 +27,8 @@ class ProjectController extends Controller
             'name' => $request->name,
             'type' => $request->type,
             'description' => $request->description,
-            'accountId' => $request->accountId,
-            'participants' => $request->participants,
-            'dueDate' => $request->dueDate,
+            'account_id' => $request->accountId,
+            'due_date' => $request->dueDate,
         ];
 
         try {
@@ -90,7 +89,6 @@ class ProjectController extends Controller
             'type' => $request->type,
             'description' => $request->description,
             'account_id' => $request->accountId,
-            'participants' => $request->participants,
             'due_date' => $request->dueDate,
         ];
         try {
