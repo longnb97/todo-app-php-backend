@@ -65,7 +65,7 @@ class CreateUsersTable extends Migration
         });
         Schema::create('task_participants', function (Blueprint $table) {
             $table->integer('task_id')->unsigned();
-            $table->integer('account_id')->unsigned();
+            $table->integer('account_id')->unsigned(); 
             $table->boolean('active')->default(1);
             $table->timestamps();
         });
