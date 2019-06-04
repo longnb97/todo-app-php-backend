@@ -16,26 +16,42 @@ class Task extends Model implements JWTSubject
 
     public static function getAll()
     {
-        return DB::table('tasks')->get();
+        return DB::table('tasks')
+            ->get();
     }
 
     public static function getById($id)
     {
-        return DB::table('tasks')->where('id', '=', $id)->get();
+        return DB::table('tasks')
+            ->where([
+                ['id', '=', $id,],
+                ['active', '=', 1]
+            ])
+            ->get();
     }
 
     public static function deleteTask($id)
     {
-        return DB::table('tasks')->where('id', '=', $id)->delete();
+        return DB::table('tasks')->where('id', '=', $id)->update(['active' => 0]);
     }
     public static function getProjectTasks($projectId)
     {
-        return DB::table('tasks')->where('project_id', '=', $projectId)->get();
+        return DB::table('tasks')
+            ->where([
+                ['project_id', '=', $projectId],
+                ['active', '=', 1]
+            ]) 
+            ->get();
     }
 
     public static function changeProperties($task, $id)
     {
-        $query = DB::table('tasks')->where('id', '=', $id)->update($task);
+        $query = DB::table('tasks')
+            ->where([
+                ['id', '=', $id],
+                ['active', '=', 1]
+            ])
+            ->update($task);
         return $query;
     }
 

@@ -36,7 +36,6 @@ class CreateUsersTable extends Migration
             $table->string('type'); // kieu project ...
             $table->string('description')->default(' ');
             $table->integer('account_id')->unsigned();
-            $table->string('participants'); // nguoi tham gia 
             $table->date('due_date')->nullable();
             $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
@@ -45,7 +44,6 @@ class CreateUsersTable extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->increments('id');
             $table->string('owner'); // nguoi tao
-            $table->string('participants'); // nguoi tham gia => luu id ngu?i tham gia, phân cách = ,
             $table->date('due_date'); //ngay het han
             $table->integer('project_id')->unsigned(); //projectId
             $table->string('status'); // doing, done , ...

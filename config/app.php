@@ -174,7 +174,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Helpers\ResponseService::class,
-
+        App\Helpers\DebugService::class,
     ],
 
     /*
