@@ -4,13 +4,15 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
+// merge vs dev
+// merge vs dev 1
 class InsertData extends Migration
 {
-    /**
+    /**`
      * Run the migrations.
      *
-     * @return void
-     */
+     * @return void adsad
+     */ 
     public function up()
     {
         DB::table('accounts')->insert(
@@ -41,9 +43,10 @@ class InsertData extends Migration
                 // 'token' => 'Bearer aaaa',
                 'name' => 'Nguyễn Tiến Thắng pass 3',
                 'job' => 'óc chó',
-                'company' => 'ko biet'
+                'company' => 'ko biet'  
             ]
         );
+        // check
         DB::table('accounts')->insert(
             [
                 'email' => 'tuananh',
