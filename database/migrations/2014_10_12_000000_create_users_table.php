@@ -20,7 +20,6 @@ class CreateUsersTable extends Migration
             Schema::dropIfExists('tasks');
             $table->increments('id');
             $table->string('owner'); // nguoi tao
-            $table->string('participants'); // nguoi tham gia => luu id ngu?i tham gia, phân cách = ,
             $table->date('dueDate'); //ngay het han
             $table->string('projectId'); //projectId
             $table->string('status'); // doing, done , ...
@@ -32,7 +31,7 @@ class CreateUsersTable extends Migration
         });
 
         Schema::create('comments', function (Blueprint $table) {
-            Schema::dropIfExists('projects');
+            Schema::dropIfExists('comments');
             $table->increments('id');
             $table->string('accountId'); //accountId
             $table->string('type')->default('text'); //text, image...
@@ -61,7 +60,7 @@ class CreateUsersTable extends Migration
         });
 
         Schema::create('projects', function (Blueprint $table) {
-            Schema::dropIfExists('comments');
+            Schema::dropIfExists('projects');
             $table->increments('id');
             $table->string('name');
             $table->string('type'); // kieu project ...
@@ -74,6 +73,22 @@ class CreateUsersTable extends Migration
             $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
             $table->boolean('active')->default(1);
         });
+
+        Schema::create('task_participants', function (Blueprint $table) {
+            $table->bigInteger('task_id')->primary();
+            $table->bigInteger('account_id')->primary();
+            $table->boolean('active')->default(1);
+            $table->timestamps();
+        });
+
+        Schema::create('project_participants', function (Blueprint $table) {
+            $table->bigInteger('project_id')->primary();
+            $table->bigInteger('account_id')->primary();
+            $table->boolean('active')->default(1);
+            $table->timestamps();
+        });
+
+        
     }
 
     /**
@@ -87,5 +102,7 @@ class CreateUsersTable extends Migration
         Schema::dropIfExists('projects');
         Schema::dropIfExists('accounts');
         Schema::dropIfExists('comments');
+        Schema::dropIfExists('task_participants');
+        Schema::dropIfExists('project_participants');
     }
 }
