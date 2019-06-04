@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->increments('id');
             $table->string('owner'); // nguoi tao
+            $table->string('participants'); // nguoi tham gia => luu id ngu?i tham gia, phân cách = ,
             $table->date('dueDate'); //ngay het han
             $table->string('projectId'); //projectId
             $table->string('status'); // doing, done , ...
@@ -30,10 +31,6 @@ class CreateUsersTable extends Migration
         });
 
         Schema::create('comments', function (Blueprint $table) {
-<<<<<<< HEAD
-=======
-            Schema::dropIfExists('comments');
->>>>>>> 68a52ff065baac3740972ba57b1ad904bfb070c7
             $table->increments('id');
             $table->string('accountId'); //accountId
             $table->string('type')->default('text'); //text, image...
@@ -61,10 +58,6 @@ class CreateUsersTable extends Migration
         });
 
         Schema::create('projects', function (Blueprint $table) {
-<<<<<<< HEAD
-=======
-            Schema::dropIfExists('projects');
->>>>>>> 68a52ff065baac3740972ba57b1ad904bfb070c7
             $table->increments('id');
             $table->string('name');
             $table->string('type'); // kieu project ...
@@ -78,6 +71,129 @@ class CreateUsersTable extends Migration
             $table->boolean('active')->default(1);
         });
 
+
+        DB::table('accounts')->insert(
+            [
+                'email' => 'long',
+                'password' => Hash::make('1'),
+                // 'token' => 'Bearer aaaa',
+                'name' => 'Nguyễn Bảo Long',
+                'job' => 'Student pass 1',
+                'company' => 'Pal'
+            ]
+        );
+        DB::table('accounts')->insert(
+            [
+                'email' => 'quan',
+                'password' => Hash::make('2'),
+                // 'token' => 'Bearer aaaa',
+                'name' => 'Nguyễn Tiến Quân',
+                'job' => 'Đồng đoàn pass 2',
+                'company' => 'ko biet'
+            ],
+        );
+        DB::table('accounts')->insert(
+            [
+                'email' => 'tongthang',
+                'password' => Hash::make('3'),
+                // 'token' => 'Bearer aaaa',
+                'name' => 'Nguyễn Tiến Thắng pass 3',
+                'job' => 'óc chó',
+                'company' => 'ko biet'
+            ],
+        );
+        DB::table('accounts')->insert(
+            [
+                'email' => 'tuananh',
+                'password' => Hash::make('4'),
+                // 'token' => 'Bearer aaaa',
+                'name' => 'Nguyễn Tiến Anh pass 4',
+                'job' => 'óc',
+                'company' => 'Icheck'
+            ],
+        );
+        DB::table('projects')->insert(
+            [
+                'name' => 'DO AN PHP',
+                'type' => 'homework',
+                'description' => 'Co gang lam 1 to do app',
+                'accountId' => '1',
+                'participants' => '1;2;3',
+                'dueDate' => '2017-05-03'
+            ],
+        );
+        DB::table('projects')->insert(
+            [
+                'name' => 'DO AN Tot nghiep',
+                'type' => 'university project',
+                'description' => 'chìa khóa ra trường, làm gì h',
+                'accountId' => '2',
+                'participants' => '1;2;3;4',
+                'dueDate' => '2018-05-03'
+            ],
+        );
+        DB::table('comments')->insert(
+            [
+                'accountId' => '1',
+                //'type' => 'text',
+                'content' => 'lam ngu vcl, dap hết đi làm lại đê',
+                'taskId' => '1',
+            ],
+        );
+        DB::table('comments')->insert(
+            [
+                'accountId' => '2',
+                //'type' => 'text',
+                'content' => 'ok để em làm lại ',
+                'taskId' => '1',
+            ],
+        );
+        DB::table('comments')->insert(
+            [
+                'accountId' => '2',
+                //'type' => 'text',
+                'content' => 'tóc đẹp không',
+                'taskId' => '2',
+            ],
+        );
+        DB::table('comments')->insert(
+            [
+                'accountId' => '1',
+                //'type' => 'text',
+                'content' => 'đầu tóc như cái lông chồn',
+                'taskId' => '2',
+            ],
+        );
+        DB::table('tasks')->insert(
+            [
+                'owner' => '1',
+                'participants' => '1;2;3',
+                'dueDate' => '2018-05-03',
+                'projectId' => '1',
+                'status' => 'doing',
+                'description' => 'làm đồ án phần backend'
+            ],
+        );
+        DB::table('tasks')->insert(
+            [
+                'owner' => '1',
+                'participants' => '1',
+                'dueDate' => '2018-05-03',
+                'projectId' => '1',
+                'status' => 'doing',
+                'description' => 'chơi'
+            ],
+        );
+        DB::table('tasks')->insert(
+            [
+                'owner' => '2',
+                'participants' => '1;2',
+                'dueDate' => '2019-05-03',
+                'projectId' => '2',
+                'status' => 'done',
+                'description' => 'học bài'
+            ],
+        );
     }
 
     /**
@@ -91,7 +207,5 @@ class CreateUsersTable extends Migration
         Schema::dropIfExists('projects');
         Schema::dropIfExists('accounts');
         Schema::dropIfExists('comments');
-        Schema::dropIfExists('task_participants');
-        Schema::dropIfExists('project_participants');
     }
 }
