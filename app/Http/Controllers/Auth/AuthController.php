@@ -40,6 +40,7 @@ class AuthController extends Controller
 
     private function getToken($email, $password)
     {
+        // create token
         $token = null;
         try {
             if (!$token = JWTAuth::attempt(['email' => $email, 'password' => $password])) {
@@ -58,25 +59,6 @@ class AuthController extends Controller
         return $token;
     }
 
-    // public function loginTest(Request $req)
-    // {
-
-    //     $user = DB::table('accounts')
-    //         ->where('email', '=', $req->email)
-    //         ->first();
-
-    //     if ($user && Hash::check($req->password, $user->password)) {
-    //         $token = self::getToken($req->email, $req->password);
-    //         $user->auth_token = $token;
-    //         $user->save();
-
-    //         $response = ['success' => true, 'data' => ['id' => $user->id, 'auth_token' => $user->auth_token, 'name' => $user->name, 'email' => $user->email]];
-    //     } else
-    //         $response = ['success' => false, 'data' => 'Record doesnt exists'];
-
-    //     return response()->json($response, 201);
-    // }
-
     public function handleLogin(Request $req)
     {
         if (!empty($req->email) && !empty($req->password)) {
@@ -91,8 +73,8 @@ class AuthController extends Controller
                 //có tk
                 if (Hash::check($req->password, $data->password) == true) {
                     //đúng mk
-                    $credentials = ['email' => $data->email, 'password' => $data->password];
-                    $token = self::getToken($req->email, $req->password);
+                    $credentials = ['email' => $data->email, 'password' => $data->password]; // payload
+                    $token = self::getToken($req->email, $req->password);// this.getToken
                     if (gettype($token) != 'string') {
                         //tạo token lỗi
                         return ResponseService::response(0, 'failed to generate token', 500);
@@ -122,7 +104,7 @@ class AuthController extends Controller
     // }
     public function me(Request $request)
     {
-        return JWTAuth::user();
+        return JWTAuth::user();//decode token
     }
 
     /**

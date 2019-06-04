@@ -30,7 +30,7 @@ class Task extends Model implements JWTSubject
     }
     public static function getProjectTasks($projectId)
     {
-        return DB::table('tasks')->where('projectId', '=', $projectId)->get();
+        return DB::table('tasks')->where('project_id', '=', $projectId)->get();
     }
 
     public static function changeProperties($task, $id)

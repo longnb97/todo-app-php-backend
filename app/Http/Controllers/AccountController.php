@@ -18,7 +18,7 @@ class AccountController extends Controller
     {
         $user =  [
             'email' => $request->email, 
-            'password' => bcrypt($request->password),
+            'password' => bcrypt($request->password),// hash password
             'token' => null,
             'name' => $request->name,
             'job' => $request->job,

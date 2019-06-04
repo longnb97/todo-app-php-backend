@@ -89,9 +89,9 @@ class ProjectController extends Controller
             'name' => $request->name,
             'type' => $request->type,
             'description' => $request->description,
-            'accountId' => $request->accountId,
+            'account_id' => $request->accountId,
             'participants' => $request->participants,
-            'dueDate' => $request->dueDate,
+            'due_date' => $request->dueDate,
         ];
         try {
             $data = ProjectModel::getAccountProjects($project);
@@ -111,9 +111,9 @@ class ProjectController extends Controller
             'name' => $request->name,
             'type' => $request->type,
             'description' => $request->description,
-            'accountId' => $request->accountId,
+            'account_id' => $request->accountId,
             'participants' => $request->participants,
-            'dueDate' => $request->dueDate,
+            'due_date' => $request->dueDate,
         ];
         try {
             $data = ProjectModel::getById($id);
