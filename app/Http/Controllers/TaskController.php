@@ -26,7 +26,7 @@ class TaskController extends Controller
             'owner' => $request->owner,
             'participants' => $request->participants,
             'dueDate' => $request->dueDate,
-            'projectId' => $request->projectId,
+            'project_id' => $request->projectId,
             'status' => 'Todo',
             'description' => $request->description,
         ];

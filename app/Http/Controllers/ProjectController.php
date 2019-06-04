@@ -89,7 +89,7 @@ class ProjectController extends Controller
             'name' => $request->name,
             'type' => $request->type,
             'description' => $request->description,
-            'accountId' => $request->accountId,
+            'account_id' => $request->accountId,
             'participants' => $request->participants,
             'dueDate' => $request->dueDate,
         ];

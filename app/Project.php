@@ -29,7 +29,7 @@ class Project extends Model implements JWTSubject
     }
     public static function getAccountProjects($userId)
     {
-        return DB::table('projects')->where('accountId', '=', $userId)->get();
+        return DB::table('projects')->where('account_id', '=', $userId)->get();
     }
 
     public static function changeProperties($project, $id)
