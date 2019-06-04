@@ -21,8 +21,7 @@ class ResponseService extends ServiceProvider
                 'success' => $success,
                 'message' => $message,
                 'statusCode' => $statusCode,
-                'data' => $data,
-                $moreInfo => $info
+                'data' => $data
             ];
         }
         return response()->json($response);
