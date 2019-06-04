@@ -45,7 +45,7 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('owner'); // nguoi tao
             $table->date('due_date'); //ngay het han
-            $table->integer('project_id')->unsigned(); //projectId
+            $table->integer('project_id')->unsigned()->unique(); //projectId
             $table->string('status'); // doing, done , ...
             $table->string('description')->default(' ');
             $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));

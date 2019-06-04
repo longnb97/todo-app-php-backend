@@ -69,13 +69,26 @@ Route::group([
 
 Route::group([
     //'middleware' => ['jwt.auth'],
-    'prefix' => 'task-participants'
+    'prefix' => 'task-participant'
 ], function () {
-    Route::get('/', 'TaskParticipantsController@getAllTaskParticipants');
-    Route::post('/', 'TaskParticipantsController@createTaskParticipants');   
-    Route::get('/task-filter/{projectId}', 'TaskParticipantsController@getTaskParticipantsByTaskId');
-    Route::get('/project-filter/{projectId}', 'TaskParticipantsController@getTaskParticipantsByTaskId');
-    Route::get('/{taskId}', 'TaskParticipantsController@getTaskById');
-    Route::put('/{taskId}', 'TaskParticipantsController@changeTaskProperties');
-    Route::delete('/{taskId}', 'TaskParticipantsController@deleteTaskById');
+    Route::get('/', 'TaskParticipantController@getAllTaskParticipant');
+    Route::post('/', 'TaskParticipantController@createTaskParticipant');   
+    Route::get('/task-filter/{taskId}', 'TaskParticipantController@getTaskParticipantByTaskId');
+    Route::get('/account-filter/{accountId}', 'TaskParticipantController@getTaskParticipantByAccountId');
+    // Route::put('/{taskId}', 'TaskParticipantController@changeTaskPropertie');
+    Route::delete('/{taskId}/{accountId}', 'TaskParticipantController@deleteTaskParticipant');
 });
+
+
+Route::group([
+    //'middleware' => ['jwt.auth'],
+    'prefix' => 'project-participant'
+], function () {
+    Route::get('/', 'ProjectParticipantController@getAllProjectParticipant');
+    Route::post('/', 'ProjectParticipantController@createProjectParticipant');   
+    Route::get('/project-filter/{projectId}', 'ProjectParticipantController@getProjectParticipantByTaskId');
+    Route::get('/account-filter/{accountId}', 'ProjectParticipantController@getProjectParticipantByAccountId');
+    // Route::put('/{taskId}', 'ProjectParticipantController@changeTaskPropertie');
+    Route::delete('/{projectId}/{accountId}', 'ProjectParticipantController@deleteProjectParticipant');
+});
+
