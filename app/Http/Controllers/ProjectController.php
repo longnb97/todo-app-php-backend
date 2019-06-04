@@ -69,9 +69,7 @@ class ProjectController extends Controller
     }
     public function deleteProjectById(Request $request, $id)
     {
-        // $output = new \Symfony\Component\Console\Output\ConsoleOutput();
-        // $output->writeln("<info>Info $id </info>");
-        Console::log('aaa');
+        //Console::log('aaa');
         try {
             $data = ProjectModel::getById($id);
             if ($data->isEmpty()) {
