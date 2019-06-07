@@ -25,6 +25,7 @@ class ResponseService extends ServiceProvider
                 $moreInfo => $info
             ];
         }
-        return response()->json($response);
+
+        return response()->json($response, $statusCode, [], JSON_UNESCAPED_UNICODE);
     }
 }
