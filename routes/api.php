@@ -8,6 +8,9 @@ Route::get('/index', function () {
 
 Route::post('/signup', 'AccountController@createAccount');
 
+//demo 
+Route::get('/demo', 'ProjectController@getAllProjects');
+
 Route::group([
     //'middleware' => ['jwt.auth','api-header'],
     'prefix' => 'auth'
