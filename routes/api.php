@@ -18,7 +18,7 @@ Route::group([
 });
 
 Route::group([
-    'middleware' => ['jwt-auth'], 
+    'middleware' => ['jwt.auth'], 
     'prefix' => 'accounts'
 ], function () {
     Route::get('/', 'AccountController@getAllAccounts');
