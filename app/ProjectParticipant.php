@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ProjectParticipantsModel extends Model
+class ProjectParticipant extends Model
 {
     public static function createTask($project_participants)
     {

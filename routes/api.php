@@ -18,7 +18,7 @@ Route::group([
 });
 
 Route::group([
-    'middleware' => ['jwt.auth'],// has 
+    //'middleware' => ['jwt-auth'], 
     'prefix' => 'accounts'
 ], function () {
     Route::get('/', 'AccountController@getAllAccounts');
@@ -27,7 +27,7 @@ Route::group([
 });
 
 Route::group([
-    'middleware' => ['jwt.auth'],
+    //'middleware' => ['jwt.auth'],
     'prefix' => 'projects'
 ], function () {
     Route::get('/', 'ProjectController@getAllProjects');
@@ -52,15 +52,16 @@ Route::group([
 });
 
 Route::group([
-    'middleware' => ['jwt.auth'],
+    //'middleware' => ['jwt.auth'],
     'prefix' => 'comments'
 ], function () {
-    // Route::get('/', 'CommentController@getAllProjects');
-    // Route::post('/', 'CommentController@createProject');
-    // Route::get('/all_projects/user/{userId}', 'CommentController@getAccountAllProjects');
-    // Route::get('/{id}', 'CommentController@getProjectById');   
-    // Route::put('/{id}', 'CommentController@changeProjectProperties');
-    // Route::delete('/{id}', 'CommentController@deleteProjectById');
+    Route::get('/', 'CommentController@getAllComments');
+    Route::post('/', 'CommentController@createTaskComment');
+    Route::get('/all_comments/task/{taskId}', 'CommentController@getTaskAllComments');
+    Route::get('/all_comments/user/{userId}', 'CommentController@getAccountAllComments');
+    Route::get('/{id}', 'CommentController@getCommentById');   
+    Route::put('/{id}', 'CommentController@changeCommentProperties');
+    Route::delete('/{id}', 'CommentController@deleteCommentById');
 });
 
 
@@ -71,10 +72,11 @@ Route::group([
     //'middleware' => ['jwt.auth'],
     'prefix' => 'task-participants'
 ], function () {
-    Route::get('/', 'TaskController@getAllTaskParticipants');
-    Route::post('/', 'TaskController@createTaskParticipants');   
-    Route::get('/project/{projectId}', 'TaskController@getProjectAllTasks');
-    Route::get('/{taskId}', 'TaskController@getTaskById');
-    Route::put('/{taskId}', 'TaskController@changeTaskProperties');
-    Route::delete('/{taskId}', 'TaskController@deleteTaskById');
+    Route::get('/', 'TaskParticipantsController@getAllTaskParticipants');
+    Route::post('/', 'TaskParticipantsController@createTaskParticipants');   
+    Route::get('/task-filter/{projectId}', 'TaskParticipantsController@getTaskParticipantsByTaskId');
+    Route::get('/project-filter/{projectId}', 'TaskParticipantsController@getTaskParticipantsByTaskId');
+    Route::get('/{taskId}', 'TaskParticipantsController@getTaskById');
+    Route::put('/{taskId}', 'TaskParticipantsController@changeTaskProperties');
+    Route::delete('/{taskId}', 'TaskParticipantsController@deleteTaskById');
 });

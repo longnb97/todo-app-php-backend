@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Helpers\ResponseService;
-
+use App\Helpers\ResponseService as Client;
+use App\Helpers\DebugService as Console;
 use App\Task as TaskModel;
 
 class TaskController extends Controller
@@ -24,10 +24,9 @@ class TaskController extends Controller
     {
         $task =  [
             'owner' => $request->owner,
-            'participants' => $request->participants,
-            'dueDate' => $request->dueDate,
-            'projectId' => $request->projectId,
-            'status' => 'Todo',
+            'due_date' => $request->dueDate,
+            'project_id' => $request->projectId,
+            'status' => $request->status,
             'description' => $request->description,
         ];
         // //$token = JWTAuth::($user);
@@ -35,9 +34,9 @@ class TaskController extends Controller
 
         try {
             $data = TaskModel::createTask($task);
-            return ResponseService::response(1, 'task created', 201, $data);
+            return Client::response(1, 'task created', 201, $data);
         } catch (QueryException $ex) {
-            return ResponseService::response(0, 'error', 500, null, $ex);
+            return Client::response(0, 'error', 500, null, $ex);
         }
     }
 
@@ -46,12 +45,12 @@ class TaskController extends Controller
         try {
             $data = TaskModel::getAll();
             if ($data->isEmpty()) {
-                return ResponseService::response(0, 'tasks not found', 404, $data);
+                return Client::response(0, 'tasks not found', 404, $data);
             } else {
-                return ResponseService::response(1, 'tasks found', 200, $data);
+                return Client::response(1, 'tasks found', 200, $data);
             }
         } catch (QueryException $ex) {
-            return ResponseService::response(0, 'error', 500, null, $ex);
+            return Client::response(0, 'error', 500, null, $ex);
         }
     }
 
@@ -60,12 +59,12 @@ class TaskController extends Controller
         try {
             $data = TaskModel::getById($taskId);
             if ($data->isEmpty()) {
-                return ResponseService::response(0, 'task not found', 404, $data);
+                return Client::response(0, 'task not found', 404, $data);
             } else {
-                return ResponseService::response(1, 'task found', 200, $data);
+                return Client::response(1, 'task found', 200, $data);
             }
         } catch (QueryException $ex) {
-            return ResponseService::response(0, 'error', 500, [], $ex);
+            return Client::response(0, 'error', 500, [], $ex);
         }
     }
 
@@ -74,13 +73,13 @@ class TaskController extends Controller
         try {
             $data = TaskModel::getById($taskId);
             if ($data->isEmpty()) {
-                return ResponseService::response(0, 'task not found', 404, $data);
+                return Client::response(0, 'task not found', 404, $data);
             } else {
                 $deleteQuery = TaskModel::deleteTask($taskId);
-                return ResponseService::response(1, ' task deleted', 200);
+                return Client::response(1, ' task deleted', 200);
             }
         } catch (QueryException $ex) {
-            return ResponseService::response(0, 'error', 500, [], $ex);
+            return Client::response(0, 'error', 500, [], $ex);
         }
     }
 
@@ -88,12 +87,12 @@ class TaskController extends Controller
         try {
             $data = TaskModel::getProjectAllTasks($projectId);
             if ($data->isEmpty()) {
-                return ResponseService::response(0, 'project not found', 404, $data);
+                return Client::response(0, 'project not found', 404, $data);
             } else {
-                return ResponseService::response(1, 'project found', 200, $data);
+                return Client::response(1, 'project found', 200, $data);
             }
         } catch (QueryException $ex) {
-            return ResponseService::response(0, 'error', 500, [], $ex);
+            return Client::response(0, 'error', 500, [], $ex);
         }
     }
 
@@ -109,13 +108,13 @@ class TaskController extends Controller
         try {
             $data = ProjectModel::getById($id);
             if ($data->isEmpty()) {
-                return ResponseService::response(0, 'projects not found', 404, $data);
+                return Client::response(0, 'projects not found', 404, $data);
             } else {
                 $update = ProjectModel::changeProperties($project, $id);
-                return ResponseService::response(1, 'updated', 200, $update);
+                return Client::response(1, 'updated', 200, $update);
             }
         } catch (QueryException $ex) {
-            return ResponseService::response(0, 'error', 500, [], $ex);
+            return Client::response(0, 'error', 500, [], $ex);
         }
     }
 }
