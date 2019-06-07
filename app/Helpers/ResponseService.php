@@ -25,7 +25,8 @@ class ResponseService extends ServiceProvider
                 'data' => $data,
                 $moreInfo => $info
             ];
-        }
+        };
+        $headers = ['Content-type'=> 'application/json; charset=utf-8'];
         return response()->json($response, $statusCode, $headers, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
         //JSON_UNESCAPED_UNICODE // tieng Viet co dau
         //JSON_PRETTY_PRINT   // format json de nhin
