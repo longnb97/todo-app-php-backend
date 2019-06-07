@@ -66,11 +66,11 @@ return [
 
         'mysql' => [
             'driver' => 'mysql',
-            'host' => env('db4free.net'),  
-            'port' => env('3306'), 
-            'database' => env('todoappws'),
-            'username' => env('balo110444'),
-            'password' => env('nblong1997'),
+            'host' => env('DB_HOST', 'db4free.net'),  
+            'port' => env('DB_PORT', '3306'), 
+            'database' => env('DB_DATABASE', 'todoappws'),
+            'username' => env('DB_USERNAME', 'balo110444'),
+            'password' => env('DB_PASSWORD', 'nblong1997'),
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8',
             'collation' => 'utf8_general_ci',
