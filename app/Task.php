@@ -40,7 +40,7 @@ class Task extends Model implements JWTSubject
             ->where([
                 ['project_id', '=', $projectId],
                 ['active', '=', 1]
-            ])
+            ]) 
             ->get();
     }
 
