@@ -67,7 +67,7 @@ return [
         'mysql' => [
             'driver' => 'mysql',
             'host' => env('DB_HOST', 'db4free.net'),
-            'port' => env('DB_PORT', '3306'),
+            'port' => env('DB_PORT', '3306'), 
             'database' => env('DB_DATABASE', 'todoappws from_db4free'),
             'username' => env('DB_USERNAME', 'balo110444'),
             'password' => env('DB_PASSWORD', 'nblong1997'),
