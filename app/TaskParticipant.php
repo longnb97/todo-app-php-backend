@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
 
-class TaskParticipants extends Model
+class TaskParticipant extends Model
 {
     public static function create($taskParticipants)
     {

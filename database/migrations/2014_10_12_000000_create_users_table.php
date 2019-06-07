@@ -53,10 +53,10 @@ class CreateUsersTable extends Migration
         });
         Schema::create('comments', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('account_id')->unsigned();; //accountId
+            $table->integer('account_id')->unsigned(); //accountId
             $table->string('type')->default('text'); //text, image... 
             $table->string('content'); 
-            $table->integer('task_id')->unsigned();; //taskId
+            $table->integer('task_id')->unsigned(); //taskId
             $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
             $table->boolean('active')->default(1); 
