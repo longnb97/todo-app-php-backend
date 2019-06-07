@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>Have fun developing</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -168,7 +168,7 @@
 
         <div class="content">
             <div class="title m-b-md">
-                <a class="react-link" href="http://happydevapp.herokuapp.com" target="_blank">Happy Developer</a>
+                <a class="react-link" href="http://happydevapp.herokuapp.com" target="_blank">Happy Developers</a>
             </div>
             <div class="by">
                 by Long & Quân
