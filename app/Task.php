@@ -28,6 +28,7 @@ class Task extends Model implements JWTSubject
                 ['active', '=', 1]
             ])
             ->get();
+            
     }
 
     public static function deleteTask($id)
