@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Helpers;
+
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Http\Response;
 
@@ -25,7 +26,9 @@ class ResponseService extends ServiceProvider
                 $moreInfo => $info
             ];
         }
-
-        return response()->json($response, $statusCode, [], JSON_UNESCAPED_UNICODE);
+        $headers = ['Content-type'=> 'application/json; charset=utf-8'];
+        return response()->json($response, $statusCode, $headers, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+        //JSON_UNESCAPED_UNICODE // tieng Viet co dau
+        //JSON_PRETTY_PRINT   // format json de nhin
     }
 }
