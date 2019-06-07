@@ -104,11 +104,11 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('task_participants');
+        Schema::dropIfExists('project_participants');
+        Schema::dropIfExists('comments');
         Schema::dropIfExists('tasks');
         Schema::dropIfExists('projects');
         Schema::dropIfExists('accounts');
-        Schema::dropIfExists('comments');
-        Schema::dropIfExists('task_participants');
-        Schema::dropIfExists('project_participants');
     }
 }
