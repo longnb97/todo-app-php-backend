@@ -55,12 +55,13 @@ Route::group([
     //'middleware' => ['jwt.auth'],
     'prefix' => 'comments'
 ], function () {
-    // Route::get('/', 'CommentController@getAllProjects');
-    // Route::post('/', 'CommentController@createProject');
-    // Route::get('/all_projects/user/{userId}', 'CommentController@getAccountAllProjects');
-    // Route::get('/{id}', 'CommentController@getProjectById');   
-    // Route::put('/{id}', 'CommentController@changeProjectProperties');
-    // Route::delete('/{id}', 'CommentController@deleteProjectById');
+    Route::get('/', 'CommentController@getAllComments');
+    Route::post('/', 'CommentController@createTaskComment');
+    Route::get('/all_comments/task/{taskId}', 'CommentController@getTaskAllComments');
+    Route::get('/all_comments/user/{userId}', 'CommentController@getAccountAllComments');
+    Route::get('/{id}', 'CommentController@getCommentById');   
+    Route::put('/{id}', 'CommentController@changeCommentProperties');
+    Route::delete('/{id}', 'CommentController@deleteCommentById');
 });
 
 
