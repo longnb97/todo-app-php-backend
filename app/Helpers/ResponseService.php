@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Helpers;
+
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Http\Response;
 
@@ -25,6 +26,6 @@ class ResponseService extends ServiceProvider
                 $moreInfo => $info
             ];
         }
-        return response()->json($response);
+        return response()->json($response, $statusCode,  [],  JSON_PRETTY_PRINT);
     }
 }
