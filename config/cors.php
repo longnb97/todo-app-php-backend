@@ -11,7 +11,7 @@ return [
     |
     */
    'supportsCredentials' => false,
-   'allowedOrigins' => ['http://localhost:3000/','http://localhost:300'],
+   'allowedOrigins' => ['*'],
    'allowedHeaders' => ['Content-Type', 'X-Requested-With','Access-Control-Allow-Origin', 'X-Auth-Token', 'X-Requested-With'],
    'allowedMethods' => ['*'], // ex: ['GET', 'POST', 'PUT',  'DELETE']
    'exposedHeaders' => [],
