@@ -15,7 +15,7 @@ class Account extends Authenticatable implements JWTSubject
 {
     use Notifiable;
 
-    public static function createAccount($user)
+    public static function create($user)
     {
         return DB::table('accounts')->insert($user);
     }
