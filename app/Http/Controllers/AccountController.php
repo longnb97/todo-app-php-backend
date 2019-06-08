@@ -31,7 +31,7 @@ class AccountController extends Controller
             $data = AccountModel::create($user);
             return Client::response(1, 'account created', 201, $data);
         } catch (QueryException $ex) {
-            return Client::response(0, 'error', 500, null, $ex);
+            return Client::response(0, 'error', 500, null, $ex, 'errmsg');
         }
     }
 
