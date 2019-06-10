@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>Have fun developing</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -77,6 +77,7 @@
         .links>img {
             width: 25px;
             height: 25px;
+<<<<<<< HEAD
         }
 
         .links>img:hover {
@@ -84,6 +85,15 @@
             height: 25px;
         }
 
+=======
+        }
+
+        .links>img:hover {
+            width: 25px;
+            height: 25px;
+        }
+
+>>>>>>> dcd86d107face508edb6d670cf56378c88f5286d
         .dev>a {
             color: #636b6f;
             padding: 0 25px;
@@ -168,7 +178,11 @@
 
         <div class="content">
             <div class="title m-b-md">
+<<<<<<< HEAD
                 <a class="react-link" href="http://happydevapp.herokuapp.com" target="_blank">Happy Developer<s/a>
+=======
+                <a class="react-link" href="http://happydevapp.herokuapp.com" target="_blank">Happy Developers</a>
+>>>>>>> dcd86d107face508edb6d670cf56378c88f5286d
             </div>
             <div class="by">
                 by Long & Quân
@@ -178,6 +192,7 @@
                 <a href="https://github.com/longnb97/todo-app-php" target="_blank">Back-end Git</a>
                 <img src="https://git-scm.com/images/logos/downloads/Git-Icon-Black.png" alt="" />
                 <a href="https://github.com/longnb97/todo-app-client-reactjs" target="_blank">Front-end Git</a>
+<<<<<<< HEAD
             </div><br>
             <div class="dev">
                 <a href="https://www.facebook.com/nguyentienquan03091997" target="_blank">Dev::getInfo('Quân')</a>
@@ -364,6 +379,8 @@
                 <a href="https://github.com/longnb97/todo-app-php" target="_blank">Back-end Git</a>
                 <img src="https://git-scm.com/images/logos/downloads/Git-Icon-Black.png" alt="" />
                 <a href="https://github.com/longnb97/todo-app-client-reactjs" target="_blank">Front-end Git</a>
+=======
+>>>>>>> dcd86d107face508edb6d670cf56378c88f5286d
             </div><br>
             <div class="dev">
                 <a href="https://www.facebook.com/nguyentienquan03091997" target="_blank">Dev::getInfo('Quân')</a>
@@ -371,6 +388,7 @@
                 <a href="https://www.facebook.com/long.bao.777158" target="_blank">Dev::getInfo('Long')</a>
             </div><br> <br> <br> <br> <br>
             <a class="react-link-2" style="color:royalblue" href="http://happydevapp.herokuapp.com" target="_blank">To application</a> <br> 
+<<<<<<< HEAD
             <a class="react-link-2" style="color:royalblue" href="http://localhost:8000/api/demo/projects" target="_blank">Api demo</a> <br> <br> <br>
             <div class="footerIcon">
                 powered by
@@ -385,10 +403,14 @@
 
 </html>
             <a class="react-link-2" style="color:royalblue" href="http://happydevapp.herokuapp.com" target="_blank">To application</a> <br> <br> <br>
+=======
+            <a class="react-link-2" style="color:royalblue" href="https://happy-dev.herokuapp.com/api/demo/projects" target="_blank">Api demo</a> <br> <br> <br>
+>>>>>>> dcd86d107face508edb6d670cf56378c88f5286d
             <div class="footerIcon">
                 powered by
                 <img src="http://www.designbust.com/download/168/thumb/laravel_icon_thum.png" alt="" /> Laravel
             </div><br> <br>
+            
         </div>
     </div>
 </body>

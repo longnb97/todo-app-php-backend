@@ -6,6 +6,15 @@ Route::get('/index', function () {
     return '<h1>To-do Webservice Api</h1>';
 });
 
+<<<<<<< HEAD
+=======
+Route::post('/signup', 'AccountController@createAccount');
+
+//demo 
+Route::get('/demo/projects', 'ProjectController@getAllProjects');
+Route::get('/demo/projects/{id}', 'ProjectController@getProjectById');
+
+>>>>>>> dcd86d107face508edb6d670cf56378c88f5286d
 Route::group([
     //'middleware' => ['jwt.auth','api-header'],
     'prefix' => 'auth'
@@ -16,7 +25,11 @@ Route::group([
 });
 
 Route::group([
+<<<<<<< HEAD
     'middleware' => 'cors',
+=======
+    'middleware' => ['jwt.auth'], 
+>>>>>>> dcd86d107face508edb6d670cf56378c88f5286d
     'prefix' => 'accounts'
 ], function () {
     Route::post('/signup', 'AccountController@createAccount');
@@ -26,7 +39,7 @@ Route::group([
 });
 
 Route::group([
-    //'middleware' => ['jwt.auth'],
+    'middleware' => ['jwt.auth'],
     'prefix' => 'projects'
 ], function () {
     Route::get('/', 'ProjectController@getAllProjects');
@@ -39,7 +52,7 @@ Route::group([
 
 
 Route::group([
-    //'middleware' => ['jwt.auth'],
+    'middleware' => ['jwt.auth'],
     'prefix' => 'tasks'
 ], function () {
     Route::get('/', 'TaskController@getAllTasks');
@@ -51,7 +64,7 @@ Route::group([
 });
 
 Route::group([
-    //'middleware' => ['jwt.auth'],
+    'middleware' => ['jwt.auth'],
     'prefix' => 'comments'
 ], function () {
     Route::get('/', 'CommentController@getAllComments');
@@ -68,7 +81,7 @@ Route::group([
 //// quandev
 
 Route::group([
-    //'middleware' => ['jwt.auth'],
+    'middleware' => ['jwt.auth'],
     'prefix' => 'task-participants'
 ], function () {
     Route::get('/', 'TaskParticipantsController@getAllTaskParticipants');
