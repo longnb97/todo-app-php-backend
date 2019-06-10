@@ -12,8 +12,8 @@ return [
     */
 
     'supportsCredentials' => false,
-    'allowedOrigins' => ['http://localhost:3000/','https://happydevapp.herokuapp.com/', 'https://happydevapp.herokuapp.com'],
-    'allowedHeaders' => ['Content-Type', 'X-Requested-With', 'Accept'],
+    'allowedOrigins' => ['http://localhost:3000/', 'https://happydevapp.herokuapp.com/', 'https://happydevapp.herokuapp.com'],
+    'allowedHeaders' => ['Content-Type', 'X-Requested-With', 'Accept', 'Origin'],
     'allowedMethods' => ['GET', 'POST', 'PUT',  'DELETE'],
     'exposedHeaders' => [],
     'maxAge' => 0,

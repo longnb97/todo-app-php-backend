@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'https://happy-dev.herokuapp.com'),
+    'url' => env('APP_URL', 'https://happy-dev.herokuapp.com/'),
 
     'asset_url' => env('ASSET_URL', null),
 
