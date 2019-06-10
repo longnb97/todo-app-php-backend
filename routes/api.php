@@ -6,21 +6,20 @@ Route::get('/index', function () {
     return '<h1>To-do Webservice Api</h1>';
 });
 
-Route::post('/signup', 'AccountController@createAccount');
-
 Route::group([
     //'middleware' => ['jwt.auth','api-header'],
     'prefix' => 'auth'
 ], function () {
     Route::post('/test', 'AuthController@loginTest');
     Route::post('/login', 'AuthController@handleLogin');
-    Route::get('/check_auth', 'AuthController@me');// checkout
+    Route::get('/check_auth', 'AuthController@me'); // checkout
 });
 
 Route::group([
-    //'middleware' => ['jwt-auth'], 
+    'middleware' => 'cors',
     'prefix' => 'accounts'
 ], function () {
+    Route::post('/signup', 'AccountController@createAccount');
     Route::get('/', 'AccountController@getAllAccounts');
     Route::get('/{id}', 'AccountController@getAccountById');
     Route::delete('/{id}', 'AccountController@deleteAccountById');
@@ -44,7 +43,7 @@ Route::group([
     'prefix' => 'tasks'
 ], function () {
     Route::get('/', 'TaskController@getAllTasks');
-    Route::post('/', 'TaskController@createTask');   
+    Route::post('/', 'TaskController@createTask');
     Route::get('/project/{projectId}', 'TaskController@getProjectAllTasks');
     Route::get('/{taskId}', 'TaskController@getTaskById');
     Route::put('/{taskId}', 'TaskController@changeTaskProperties');
@@ -59,7 +58,7 @@ Route::group([
     Route::post('/', 'CommentController@createTaskComment');
     Route::get('/all_comments/task/{taskId}', 'CommentController@getTaskAllComments');
     Route::get('/all_comments/user/{userId}', 'CommentController@getAccountAllComments');
-    Route::get('/{id}', 'CommentController@getCommentById');   
+    Route::get('/{id}', 'CommentController@getCommentById');
     Route::put('/{id}', 'CommentController@changeCommentProperties');
     Route::delete('/{id}', 'CommentController@deleteCommentById');
 });
@@ -73,7 +72,7 @@ Route::group([
     'prefix' => 'task-participants'
 ], function () {
     Route::get('/', 'TaskParticipantsController@getAllTaskParticipants');
-    Route::post('/', 'TaskParticipantsController@createTaskParticipants');   
+    Route::post('/', 'TaskParticipantsController@createTaskParticipants');
     Route::get('/task-filter/{projectId}', 'TaskParticipantsController@getTaskParticipantsByTaskId');
     Route::get('/project-filter/{projectId}', 'TaskParticipantsController@getTaskParticipantsByTaskId');
     Route::get('/{taskId}', 'TaskParticipantsController@getTaskById');
