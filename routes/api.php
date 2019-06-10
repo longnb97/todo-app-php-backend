@@ -6,15 +6,6 @@ Route::get('/index', function () {
     return '<h1>To-do Webservice Api</h1>';
 });
 
-<<<<<<< HEAD
-Route::post('/signup', 'AccountController@createAccount');
-
-//demo 
-Route::get('/demo/projects', 'ProjectController@getAllProjects');
-Route::get('/demo/projects/{id}', 'ProjectController@getProjectById');
-
-=======
->>>>>>> long
 Route::group([
     //'middleware' => ['jwt.auth','api-header'],
     'prefix' => 'auth'
@@ -25,11 +16,7 @@ Route::group([
 });
 
 Route::group([
-<<<<<<< HEAD
-    'middleware' => ['jwt.auth'], 
-=======
     'middleware' => 'cors',
->>>>>>> long
     'prefix' => 'accounts'
 ], function () {
     Route::post('/signup', 'AccountController@createAccount');
