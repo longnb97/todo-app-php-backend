@@ -174,6 +174,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Helpers\ResponseService::class,
         App\Helpers\DebugService::class,
+        Barryvdh\Cors\ServiceProvider::class,
     ],
 
     /*
