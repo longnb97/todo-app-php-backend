@@ -46,20 +46,11 @@ return [
 
         'mysql' => [
             'driver' => 'mysql',
-<<<<<<< HEAD
             'host' => env('DB_HOST', 'db4free.net'),  
             'port' => env('DB_PORT', '3306'), 
             'database' => env('DB_DATABASE', 'todoappws'),
             'username' => env('DB_USERNAME', 'balo110444'),
             'password' => env('DB_PASSWORD', 'nblong1997'),
-=======
-            'url' => env('DATABASE_URL'),
-            'host' => env('DB_HOST', '127.0.0.1'),
-            'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
->>>>>>> long
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
