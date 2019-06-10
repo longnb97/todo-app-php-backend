@@ -168,7 +168,7 @@
 
         <div class="content">
             <div class="title m-b-md">
-                <a class="react-link" href="http://happydevapp.herokuapp.com" target="_blank">Happy Developers</a>
+                <a class="react-link" href="https://happydevapp.herokuapp.com" target="_blank">Happy Developers</a>
             </div>
             <div class="by">
                 by Long & Quân
@@ -184,11 +184,11 @@
                 <img src="https://static.thenounproject.com/png/346345-200.png" alt="" />
                 <a href="https://www.facebook.com/long.bao.777158" target="_blank">Dev::getInfo('Long')</a>
             </div><br> <br> <br> <br> <br>
-            <a class="react-link-2" style="color:royalblue" href="http://happydevapp.herokuapp.com" target="_blank">To application</a> <br> 
+            <a class="react-link-2" style="color:royalblue" href="https://happydevapp.herokuapp.com" target="_blank">To application</a> <br> 
             <a class="react-link-2" style="color:royalblue" href="https://happy-dev.herokuapp.com/api/demo/projects" target="_blank">Api demo</a> <br> <br> <br>
             <div class="footerIcon">
                 powered by
-                <img src="http://www.designbust.com/download/168/thumb/laravel_icon_thum.png" alt="" /> Laravel
+                <img src="https://www.designbust.com/download/168/thumb/laravel_icon_thum.png" alt="" /> Laravel
             </div><br> <br>
             
         </div>
