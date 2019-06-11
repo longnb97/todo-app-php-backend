@@ -85,7 +85,7 @@ class TaskController extends Controller
 
     public function getProjectAllTasks(Request $request, $projectId){
         try {
-            $data = TaskModel::getProjectAllTasks($projectId);
+            $data = TaskModel::getProjectTasks($projectId);
             if ($data->isEmpty()) {
                 return Client::response(0, 'project not found', 404, $data);
             } else {
