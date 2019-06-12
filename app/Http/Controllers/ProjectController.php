@@ -29,7 +29,7 @@ class ProjectController extends Controller
             'description' => $request->description,
             'account_id' => $request->accountId,
             'due_date' => $request->dueDate,
-        ];
+        ]; 
 
         try {
             $data = ProjectModel::createProject($project);
