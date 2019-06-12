@@ -26,11 +26,11 @@ Route::group([
 });
 
 Route::group([
-     //'middleware' => 'jwt.auth',
+    //'middleware' => 'jwt.auth',
     'prefix' => 'projects'
 ], function () {
-    // Route::get('/', 'ProjectController@getAllProjects');
     Route::post('/', 'ProjectController@createProject');
+    Route::get('/', 'ProjectController@getAllProjects');
     Route::get('/all_projects/user/{userId}', 'ProjectController@getAccountAllProjects');
     Route::get('/{id}', 'ProjectController@getProjectById');
     Route::put('/{id}', 'ProjectController@changeProjectProperties');
@@ -40,7 +40,7 @@ Route::group([
 
 Route::group([
     //'middleware' => 'jwt.auth',
-    'prefix' => 'tasks' 
+    'prefix' => 'tasks'
 ], function () {
     Route::get('/', 'TaskController@getAllTasks');
     Route::post('/', 'TaskController@createTask');
@@ -51,7 +51,7 @@ Route::group([
 });
 
 Route::group([
-     //'middleware' => 'jwt.auth',
+    //'middleware' => 'jwt.auth',
     'prefix' => 'comments'
 ], function () {
     Route::get('/', 'CommentController@getAllComments');
@@ -68,7 +68,7 @@ Route::group([
 //// quandev
 
 Route::group([
-     //'middleware' => 'jwt.auth',
+    //'middleware' => 'jwt.auth',
     'prefix' => 'task-participants'
 ], function () {
     Route::get('/', 'TaskParticipantsController@getAllTaskParticipants');
