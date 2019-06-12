@@ -40,7 +40,6 @@ class InsertData extends Migration
             [
                 'email' => 'tongthang',
                 'password' => Hash::make('3'),
-                // 'token' => 'Bearer aaaa',
                 'name' => 'Nguyễn Tiến Thắng pass 3',
                 'job' => 'óc chó',
                 'company' => 'ko biet'  
@@ -51,7 +50,6 @@ class InsertData extends Migration
             [
                 'email' => 'tuananh',
                 'password' => Hash::make('4'),
-                // 'token' => 'Bearer aaaa',
                 'name' => 'Nguyễn Tiến Anh pass 4',
                 'job' => 'óc',
                 'company' => 'Icheck'
@@ -82,7 +80,8 @@ class InsertData extends Migration
                 'due_date' => '2018-05-03',
                 'project_id' => 1,
                 'status' => 'doing',
-                'description' => 'làm đồ án phần backend'
+                'description' => 'làm đồ án phần backend',
+                'image' => 'https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
             ]
         );
         DB::table('tasks')->insert(
@@ -100,7 +99,8 @@ class InsertData extends Migration
                 'due_date' => '2019-05-03',
                 'project_id' => 2,
                 'status' => 'done',
-                'description' => 'học bài'
+                'description' => 'học bài',
+                'image' => 'https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
             ]
         );
 

@@ -47,6 +47,7 @@ class CreateUsersTable extends Migration
             $table->integer('project_id')->unsigned(); //projectId
             $table->string('status'); // doing, done , ...
             $table->string('description')->default(' ');
+            $table->string('image')->default('none');
             $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
             $table->boolean('active')->default(1);
