@@ -40,7 +40,7 @@ Route::group([
 
 Route::group([
     //'middleware' => 'jwt.auth',
-    'prefix' => 'tasks'
+    'prefix' => 'tasks' 
 ], function () {
     Route::get('/', 'TaskController@getAllTasks');
     Route::post('/', 'TaskController@createTask');
