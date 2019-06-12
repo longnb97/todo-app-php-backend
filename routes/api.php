@@ -29,7 +29,7 @@ Route::group([
      //'middleware' => 'jwt.auth',
     'prefix' => 'projects'
 ], function () {
-    Route::get('/', 'ProjectController@getAllProjects');
+    // Route::get('/', 'ProjectController@getAllProjects');
     Route::post('/', 'ProjectController@createProject');
     Route::get('/all_projects/user/{userId}', 'ProjectController@getAccountAllProjects');
     Route::get('/{id}', 'ProjectController@getProjectById');
