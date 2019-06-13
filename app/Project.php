@@ -56,6 +56,10 @@ class Project extends Model implements JWTSubject
             ])
             ->update($project);
     }
+    public static function getLastRow()
+    {
+        return DB::table('projects')->orderBy('created_at', 'desc')->first();
+    }
 
     public function getJWTIdentifier()
     {

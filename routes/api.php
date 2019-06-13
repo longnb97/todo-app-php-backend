@@ -31,8 +31,7 @@ Route::group([
 ], function () {
     Route::post('/', 'ProjectController@createProject');
     Route::get('/', 'ProjectController@getAllProjects');
-    Route::get('/all_projects/user/{userId}', 'ProjectController@getAccountAllProjects');
-    Route::get('/my_projects/user/{userId}', 'ProjectController@getAccountCreatedProjects');
+    Route::get('/user/{userId}', 'ProjectController@getAccountAllProjects');
     Route::get('/{id}', 'ProjectController@getProjectById');
     Route::put('/{id}', 'ProjectController@changeProjectProperties');
     Route::delete('/{id}', 'ProjectController@deleteProjectById');

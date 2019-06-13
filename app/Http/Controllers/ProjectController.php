@@ -30,13 +30,19 @@ class ProjectController extends Controller
             'description' => $request->description,
             'account_id' => $request->accountId,
             'due_date' => $request->dueDate,
-        ]; 
+        ];
 
         try {
-            $data = ProjectModel::createProject($project);
-            return Client::response(1, 'project created', 201, $data);
+            $data1 = ProjectModel::createProject($project);
+            $lastestProject = ProjectModel::getLastRow();
+            $pp =  [
+                'project_id' => $lastestProject->id,
+                'account_id' => $lastestProject->account_id
+            ];
+            $data2 = ProjectParticipant::createProjectParticipant($pp);
+            return Client::response(1, 'project created', 201, $data1);
         } catch (QueryException $ex) {
-            return Client::response(0, 'error', 500, null, $ex);
+            return Client::response(0, $ex, 500, null);
         }
     }
 
@@ -79,7 +85,7 @@ class ProjectController extends Controller
                 return Client::response(1, 'deleted', 200);
             }
         } catch (QueryException $ex) {
-            return Client::response(0, 'error', 500, [], $ex);
+            return Client::response(0, $ex, 500, []);
         }
     }
 
@@ -87,14 +93,14 @@ class ProjectController extends Controller
     public function getAccountAllProjects(Request $request, $userId)
     {
         try {
-            $data = ProjectParticipant::getAccountProjects($userId);
+            $data = ProjectParticipant::getProjects($userId);
             if ($data->isEmpty()) {
                 return Client::response(0, 'project not found', 404, $data);
             } else {
                 return Client::response(1, 'projects found', 200, $data);
             }
         } catch (QueryException $ex) {
-            return Client::response(0, 'error', 500, [], $ex);
+            return Client::response(0, $ex, 500, []);
         }
     }
 
@@ -133,7 +139,4 @@ class ProjectController extends Controller
             return Client::response(0, 'error', 500, [], $ex);
         }
     }
-
-    
-
 }

@@ -8,7 +8,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class ProjectParticipant extends Model implements JWTSubject
 {
-    public static function createTask($project_participants)
+    public static function createProjectParticipant($project_participants)
     {
         return DB::table('project_participants')->insert($project_participants);
     }
@@ -18,7 +18,7 @@ class ProjectParticipant extends Model implements JWTSubject
         return DB::table('project_participants')->get();
     }
 
-    public static function getAccountProjects($accountId)
+    public static function getProjects($accountId)
     {
         // return DB::table('project_participants')
         //     ->where("account_id", "=", $accountId)
@@ -26,7 +26,7 @@ class ProjectParticipant extends Model implements JWTSubject
         return  DB::table('project_participants')
             ->join('projects', 'project_participants.project_id', '=', 'projects.id')
             ->select('projects.*')
-            ->distinct()
+            ->where('project_participants.account_id', '=', $accountId)
             ->get();
     }
 

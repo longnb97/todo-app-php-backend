@@ -20,7 +20,7 @@ class InsertData extends Migration
                 'email' => 'long@gmail.com',
                 'password' => Hash::make('1'),
                 // 'token' => 'Bearer aaaa',
-                'name' => 'Nguyễn Bảo Long', 
+                'name' => 'Nguyễn Bảo Long',
                 'job' => 'Student pass 1',
                 'company' => 'Pal'
             ]
@@ -42,7 +42,7 @@ class InsertData extends Migration
                 'password' => Hash::make('3'),
                 'name' => 'Nguyễn Tiến Thắng pass 3',
                 'job' => 'óc chó',
-                'company' => 'ko biet'  
+                'company' => 'ko biet'
             ]
         );
         // check
@@ -57,7 +57,7 @@ class InsertData extends Migration
         );
         DB::table('projects')->insert(
             [
-                'name' => 'DO AN PHP 1',
+                'name' => 'DO AN PHP id=1',
                 'type' => 'homework',
                 'description' => 'dc A roi',
                 'account_id' => 1,
@@ -66,16 +66,17 @@ class InsertData extends Migration
         );
         DB::table('projects')->insert(
             [
-                'name' => 'DO AN Tot nghiep2',
+                'name' => 'DO AN Tot nghiep id=2',
                 'type' => 'university project',
                 'description' => 'chìa khóa ra trường, làm gì h',
                 'account_id' => 1,
                 'due_date' => '2018-05-03'
             ]
         );
+
         DB::table('projects')->insert(
             [
-                'name' => 'DO AN gi day3',
+                'name' => 'project accountid=2 tao co trong bang phu id=3',
                 'type' => 'university project',
                 'description' => 'cchiu',
                 'account_id' => 2,
@@ -83,15 +84,28 @@ class InsertData extends Migration
             ]
         );
 
+
         DB::table('projects')->insert(
             [
-                'name' => 'DO AN khong co thang so2 4',
+                'name' => 'project khong co thang so2 id=4',
                 'type' => 'university project',
                 'description' => 'cchiu',
                 'account_id' => 3,
                 'due_date' => '2018-05-03'
             ]
-            );
+        );
+
+        DB::table('projects')->insert(
+            [
+                'name' => 'project accountid=2 tao khong co trong bang phu id=5',
+                'type' => 'university project',
+                'description' => 'cchiu',
+                'account_id' => 2,
+                'due_date' => '2018-05-03'
+            ]
+        );
+
+
 
         DB::table('tasks')->insert(
             [
@@ -218,6 +232,13 @@ class InsertData extends Migration
             [
                 'project_id' => 3,
                 'account_id' => 1
+            ]
+        );
+
+        DB::table('project_participants')->insert(
+            [
+                'project_id' => 3,
+                'account_id' => 2
             ]
         );
 
