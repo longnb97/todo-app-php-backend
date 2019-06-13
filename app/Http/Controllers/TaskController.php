@@ -97,20 +97,20 @@ class TaskController extends Controller
     }
 
     public function changeTaskProperties(Request $request, $taskId){
-        $project =  [
-            'name' => $request->name,
-            'type' => $request->type,
+        $task =  [
+            'owner' => $request->owner,
+            'due_date' => $request->dueDate,
+            'project_id' => $request->projectId,
+            'status' => $request->status,
             'description' => $request->description,
-            'accountId' => $request->accountId,
-            'participants' => $request->participants,
-            'dueDate' => $request->dueDate,
+            'image' => $request->image
         ];
         try {
-            $data = ProjectModel::getById($id);
+            $data = TaskModel::getById($id);
             if ($data->isEmpty()) {
-                return Client::response(0, 'projects not found', 404, $data);
+                return Client::response(0, 'tasks not found', 404, $data);
             } else {
-                $update = ProjectModel::changeProperties($project, $id);
+                $update = TaskModel::changeProperties($task, $id);
                 return Client::response(1, 'updated', 200, $update);
             }
         } catch (QueryException $ex) {
