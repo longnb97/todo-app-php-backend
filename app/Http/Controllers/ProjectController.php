@@ -7,6 +7,7 @@ use Illuminate\Database\QueryException;
 use PhpParser\Node\Stmt\TryCatch;
 
 use App\Project as ProjectModel;
+use App\ProjectParticipant;
 use App\Helpers\ResponseService as Client;
 use App\Helpers\DebugService as Console;
 
@@ -86,6 +87,20 @@ class ProjectController extends Controller
     public function getAccountAllProjects(Request $request, $userId)
     {
         try {
+            $data = ProjectParticipant::getAccountProjects($userId);
+            if ($data->isEmpty()) {
+                return Client::response(0, 'project not found', 404, $data);
+            } else {
+                return Client::response(1, 'projects found', 200, $data);
+            }
+        } catch (QueryException $ex) {
+            return Client::response(0, 'error', 500, [], $ex);
+        }
+    }
+
+    public function getAccountCreatedProjects(Request $request, $userId)
+    {
+        try {
             $data = ProjectModel::getAccountProjects($userId);
             if ($data->isEmpty()) {
                 return Client::response(0, 'project not found', 404, $data);
@@ -118,5 +133,7 @@ class ProjectController extends Controller
             return Client::response(0, 'error', 500, [], $ex);
         }
     }
+
+    
 
 }

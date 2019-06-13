@@ -32,6 +32,7 @@ Route::group([
     Route::post('/', 'ProjectController@createProject');
     Route::get('/', 'ProjectController@getAllProjects');
     Route::get('/all_projects/user/{userId}', 'ProjectController@getAccountAllProjects');
+    Route::get('/my_projects/user/{userId}', 'ProjectController@getAccountCreatedProjects');
     Route::get('/{id}', 'ProjectController@getProjectById');
     Route::put('/{id}', 'ProjectController@changeProjectProperties');
     Route::delete('/{id}', 'ProjectController@deleteProjectById');
@@ -78,4 +79,11 @@ Route::group([
     Route::get('/{taskId}', 'TaskParticipantsController@getTaskById');
     Route::put('/{taskId}', 'TaskParticipantsController@changeTaskProperties');
     Route::delete('/{taskId}', 'TaskParticipantsController@deleteTaskById');
+});
+
+Route::group([
+    //'middleware' => 'jwt.auth',
+    'prefix' => 'project-participants'
+], function () {   
+    Route::post('/', 'ProjectParticipantsController@createProjectParticipants');
 });
