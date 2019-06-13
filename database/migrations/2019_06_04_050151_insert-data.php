@@ -242,6 +242,13 @@ class InsertData extends Migration
             ]
         );
 
+        DB::table('project_participants')->insert(
+            [
+                'project_id' => 5,
+                'account_id' => 2
+            ]
+        );
+
         /////
 
         DB::table('task_participants')->insert(
@@ -262,6 +269,7 @@ class InsertData extends Migration
                 'account_id' => 1
             ]
         );
+        
     }
 
     /**
