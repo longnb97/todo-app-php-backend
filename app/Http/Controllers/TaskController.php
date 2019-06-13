@@ -106,11 +106,11 @@ class TaskController extends Controller
             'image' => $request->image
         ];
         try {
-            $data = TaskModel::getById($id);
+            $data = TaskModel::getById($taskId);
             if ($data->isEmpty()) {
                 return Client::response(0, 'tasks not found', 404, $data);
             } else {
-                $update = TaskModel::changeProperties($task, $id);
+                $update = TaskModel::changeProperties($task, $taskId);
                 return Client::response(1, 'updated', 200, $update);
             }
         } catch (QueryException $ex) {
