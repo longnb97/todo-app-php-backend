@@ -15,7 +15,7 @@ Route::group([
 });
 
 Route::group([
-    //'middleware' => 'jwt.auth',
+    'middleware' => 'jwt.auth',
     'prefix' => 'accounts'
 ], function () {
     Route::post('/signup', 'AccountController@createAccount');
@@ -26,7 +26,7 @@ Route::group([
 });
 
 Route::group([
-    //'middleware' => 'jwt.auth',
+    'middleware' => 'jwt.auth',
     'prefix' => 'projects'
 ], function () {
     Route::post('/', 'ProjectController@createProject');
@@ -41,7 +41,7 @@ Route::group([
 
 
 Route::group([
-    //'middleware' => 'jwt.auth',
+    'middleware' => 'jwt.auth',
     'prefix' => 'tasks'
 ], function () {
     Route::get('/', 'TaskController@getAllTasks');
@@ -53,7 +53,7 @@ Route::group([
 });
 
 Route::group([
-    //'middleware' => 'jwt.auth',
+    'middleware' => 'jwt.auth',
     'prefix' => 'comments'
 ], function () {
     Route::get('/', 'CommentController@getAllComments');
@@ -67,7 +67,7 @@ Route::group([
 
 
 Route::group([
-    //'middleware' => 'jwt.auth',
+    'middleware' => 'jwt.auth',
     'prefix' => 'task-participants'
 ], function () {
     Route::get('/', 'TaskParticipantsController@getAllTaskParticipants');
@@ -80,7 +80,7 @@ Route::group([
 });
 
 Route::group([
-    //'middleware' => 'jwt.auth',
+    'middleware' => 'jwt.auth',
     'prefix' => 'project-participants'
 ], function () {   
     Route::post('/', 'ProjectParticipantsController@createProjectParticipants');
