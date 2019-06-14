@@ -10,7 +10,7 @@ API (Laravel): https://happy-dev.herokuapp.com
 github : https://github.com/longnb97/todo-app-php
 
 
-Client (ReactJS): https://comingsoon.herokuapp.com
+Client (ReactJS): https://trello-dev-app.herokuapp.com/
 github: https://github.com/longnb97/todo-app-client-reactjs
 
 
