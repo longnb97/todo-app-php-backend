@@ -28,6 +28,7 @@ class TaskController extends Controller
             'project_id' => $request->projectId,
             'status' => $request->status,
             'description' => $request->description,
+            'image' => $request->image
         ];
         // //$token = JWTAuth::($user);
         // //$user['token'] = $token;
