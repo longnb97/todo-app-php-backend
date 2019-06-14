@@ -56,8 +56,8 @@ Route::group([
 ], function () {
     Route::get('/', 'CommentController@getAllComments');
     Route::post('/', 'CommentController@createTaskComment');
-    Route::get('/all_comments/task/{taskId}', 'CommentController@getTaskAllComments');
-    Route::get('/all_comments/user/{userId}', 'CommentController@getAccountAllComments');
+    Route::get('/task/{taskId}', 'CommentController@getTaskAllComments');
+    Route::get('/user/{userId}', 'CommentController@getAccountAllComments');
     Route::get('/{id}', 'CommentController@getCommentById');
     Route::put('/{id}', 'CommentController@changeCommentProperties');
     Route::delete('/{id}', 'CommentController@deleteCommentById');
