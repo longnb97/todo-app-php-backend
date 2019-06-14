@@ -22,6 +22,7 @@ class ProjectParticipant extends Model implements JWTSubject
     {
         return  DB::table('project_participants')
             ->join('accounts', 'accounts.id', '=', 'project_participants.account_id')
+            ->select('accounts.email', 'accounts.name', 'accounts.job', 'accounts.company', 'project_participants.*')
             ->where('project_participants.project_id', '=', $projectId)
             ->get();
     }

@@ -49,7 +49,8 @@ class Comment extends Model
     public static function getTaskComments($taskId)
     {
         return DB::table('comments')
-        ->join('accounts', 'accounts.id', '=', 'comments.account_id')
+            ->join('accounts', 'accounts.id', '=', 'comments.account_id')
+            ->select('accounts.email', 'accounts.name', 'accounts.job', 'accounts.company', 'comments.*')
             ->where([
                 ['comments.task_id', '=', $taskId],
                 ['comments.active', '=', 1]

@@ -7,7 +7,6 @@ Route::get('/index', function () {
 });
 
 Route::group([
-    //'middleware' => ['jwt.auth','api-header'],
     'prefix' => 'auth'
 ], function () {
     Route::post('/test', 'AuthController@loginTest');
