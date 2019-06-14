@@ -21,7 +21,7 @@ class InsertData extends Migration
                 'password' => Hash::make('1'),
                 // 'token' => 'Bearer aaaa',
                 'name' => 'Nguyễn Bảo Long',
-                'job' => 'Student pass 1',
+                'job' => 'Student',
                 'company' => 'Pal'
             ]
         );
@@ -31,8 +31,8 @@ class InsertData extends Migration
                 'password' => Hash::make('2'),
                 // 'token' => 'Bearer aaaa',
                 'name' => 'Nguyễn Tiến Quân',
-                'job' => 'Đồng đoàn pass 2',
-                'company' => 'ko biet'
+                'job' => 'Lao công',
+                'company' => 'đời'
             ]
         );
 
@@ -41,8 +41,8 @@ class InsertData extends Migration
                 'email' => 'tongthang@gmail.com',
                 'password' => Hash::make('3'),
                 'name' => 'Nguyễn Tiến Thắng pass 3',
-                'job' => 'óc chó',
-                'company' => 'ko biet'
+                'job' => 'thất nghiệp',
+                'company' => 'không có'
             ]
         );
         // check
@@ -50,46 +50,46 @@ class InsertData extends Migration
             [
                 'email' => 'tuananh@gmail.com',
                 'password' => Hash::make('4'),
-                'name' => 'Nguyễn Tiến Anh pass 4',
-                'job' => 'óc',
-                'company' => 'Icheck'
+                'name' => 'Nguyễn Tiến Anh',
+                'job' => 'Vô dụng',
+                'company' => 'anonymous'
             ]
         );
         DB::table('projects')->insert(
             [
-                'name' => 'DO AN PHP id=1',
+                'name' => 'Đồ án PHP',
                 'type' => 'homework',
-                'description' => 'dc A roi',
+                'description' => 'Cố gắng kiếm con A',
                 'account_id' => 1,
-                'due_date' => '2017-05-03'
+                'due_date' => '2019-06-15'
             ]
         );
         DB::table('projects')->insert(
             [
-                'name' => 'DO AN Tot nghiep id=2',
-                'type' => 'university project',
-                'description' => 'chìa khóa ra trường, làm gì h',
+                'name' => 'Đồ án tốt nghiệp',
+                'type' => 'homework',
+                'description' => 'chìa khóa ra trường, làm gì giờ',
                 'account_id' => 1,
-                'due_date' => '2018-05-03'
+                'due_date' => '2020-05-03'
             ]
         );
 
         DB::table('projects')->insert(
             [
-                'name' => 'project accountid=2 tao co trong bang phu id=3',
+                'name' => 'BTL của Quân',
                 'type' => 'university project',
-                'description' => 'cchiu',
+                'description' => 'nát',
                 'account_id' => 2,
-                'due_date' => '2018-05-03'
+                'due_date' => '2019-05-03'
             ]
         );
 
 
         DB::table('projects')->insert(
             [
-                'name' => 'project khong co thang so2 id=4',
+                'name' => 'Web bán hàng',
                 'type' => 'university project',
-                'description' => 'cchiu',
+                'description' => 'shopee pi pi pi pi',
                 'account_id' => 3,
                 'due_date' => '2018-05-03'
             ]
@@ -97,9 +97,9 @@ class InsertData extends Migration
 
         DB::table('projects')->insert(
             [
-                'name' => 'project accountid=2 tao khong co trong bang phu id=5',
+                'name' => 'Đồ án của Quân',
                 'type' => 'university project',
-                'description' => 'cchiu',
+                'description' => 'nát luôn',
                 'account_id' => 2,
                 'due_date' => '2018-05-03'
             ]
@@ -110,7 +110,7 @@ class InsertData extends Migration
         DB::table('tasks')->insert(
             [
                 'owner' => '1',
-                'due_date' => '2018-05-03',
+                'due_date' => '2019-05-03',
                 'project_id' => 1,
                 'status' => 'doing',
                 'description' => 'làm đồ án phần backend',
@@ -120,7 +120,7 @@ class InsertData extends Migration
         DB::table('tasks')->insert(
             [
                 'owner' => '1',
-                'due_date' => '2018-05-03',
+                'due_date' => '2019-05-13',
                 'project_id' => 1,
                 'status' => 'doing',
                 'description' => 'chơi'
@@ -161,7 +161,7 @@ class InsertData extends Migration
             [
                 'account_id' => 1,
                 //'type' => 'text',
-                'content' => 'lam ngu vcl, dap hết đi làm lại đê',
+                'content' => 'lam ngu vc, đập hết đi làm lại đê',
                 'task_id' => 1,
             ]
         );
@@ -169,7 +169,7 @@ class InsertData extends Migration
             [
                 'account_id' => 2,
                 //'type' => 'text',
-                'content' => 'ok để em làm lại ',
+                'content' => 'ok để em làm lại a ơi',
                 'task_id' => 1,
             ]
         );
@@ -185,7 +185,7 @@ class InsertData extends Migration
             [
                 'account_id' => 1,
                 //'type' => 'text',
-                'content' => 'đầu tóc như cái lông chồn',
+                'content' => 'đầu tóc như cái lông chổi',
                 'task_id' => 2,
             ]
         );

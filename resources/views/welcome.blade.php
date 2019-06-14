@@ -131,14 +131,14 @@
 
         .react-link-2 {
             text-decoration: none;
-            color: #ff4d4d
+            color: #ff4d4d,
+            font-size: 40px;
         }
 
         .react-link-2:hover {
             text-decoration: none;
             color: red;
             font-size: 20px;
-
         }
 
         by {
@@ -171,13 +171,12 @@
                 <img src="https://static.thenounproject.com/png/346345-200.png" alt="" />
                 <a href="https://www.facebook.com/long.bao.777158" target="_blank">Dev::getInfo('Long')</a>
             </div><br> <br> <br> <br> <br>
-            <a class="react-link-2" style="color:royalblue" href="https://happydevapp.herokuapp.com" target="_blank">To application</a> <br> 
-            <a class="react-link-2" style="color:royalblue" href="https://happy-dev.herokuapp.com/api/demo/projects" target="_blank">Api demo</a> <br> <br> <br>
+            <a class="react-link-2" style="color:royalblue" href="https://trello-dev-app.herokuapp.com/login" target="_blank">Application</a> <br> <br> <br> <br>
             <div class="footerIcon">
                 powered by
                 <img src="https://www.designbust.com/download/168/thumb/laravel_icon_thum.png" alt="" /> Laravel
             </div><br> <br>
-            
+
         </div>
     </div>
 </body>
