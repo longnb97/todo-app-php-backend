@@ -21,6 +21,7 @@ Route::group([
 ], function () {
     Route::post('/signup', 'AccountController@createAccount');
     Route::get('/', 'AccountController@getAllAccounts');
+    Route::get('/mail', 'AccountController@getAccountByEmail');
     Route::get('/{id}', 'AccountController@getAccountById');
     Route::delete('/{id}', 'AccountController@deleteAccountById');
 });
@@ -33,6 +34,7 @@ Route::group([
     Route::get('/', 'ProjectController@getAllProjects');
     Route::get('/user/{userId}', 'ProjectParticipantsController@getAccountAllProjects');
     Route::get('/{projectId}/participants', 'ProjectParticipantsController@getProjectParticipants');
+    Route::post('/add_participant', 'ProjectParticipantsController@addParticipantToProject');//add user to project
     Route::get('/{id}', 'ProjectController@getProjectById');
     Route::put('/{id}', 'ProjectController@changeProjectProperties');
     Route::delete('/{id}', 'ProjectController@deleteProjectById');
@@ -64,9 +66,6 @@ Route::group([
     Route::delete('/{id}', 'CommentController@deleteCommentById');
 });
 
-
-
-//// quandev
 
 Route::group([
     //'middleware' => 'jwt.auth',

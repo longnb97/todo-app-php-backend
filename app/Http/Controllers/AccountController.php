@@ -62,6 +62,18 @@ class AccountController extends Controller
             return Client::response(0, 'error', 500, [], $ex);
         }
     }
+    public function getAccountByEmail(Request $request){
+        try {
+            $data = AccountModel::getByEmail($request->query('email'));
+            if ($data->isEmpty()) {
+                return Client::response(0, 'account not found', 404, $data);
+            } else {
+                return Client::response(1, 'account found', 200, $data);
+            }
+        } catch (QueryException $ex) {
+            return Client::response(0, 'error', 500, [], $ex);
+        }
+    }
 
     public function deleteAccountById(Request $request, $id)
     {

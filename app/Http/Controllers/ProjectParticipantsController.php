@@ -38,4 +38,17 @@ class ProjectParticipantsController extends Controller
             return Client::response(0, $ex, 500, []);
         }
     }
+    public function addParticipantToProject(Request $request){
+        $newParticipant =  [
+            'project_id' => $request->projectId,
+            'account_id' => $request->accountId
+        ];
+        try {
+            $data = ProjectParticipantsModel::createProjectParticipant($newParticipant);
+            return Client::response(1, 'account added to project successfully', 200, $data);
+        } catch (QueryException $ex) {
+            return Client::response(0, $ex, 500, null);
+        }
+    }   
+
 }

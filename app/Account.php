@@ -30,6 +30,11 @@ class Account extends Authenticatable implements JWTSubject
         return DB::table('accounts')->where('id', '=', $id)->get();
     }
 
+    public static function getByEmail($email)
+    {
+        return DB::table('accounts')->where('email', '=', $email)->get();
+    }
+    
     public static function deleteAccount($id)
     {
         return DB::table('accounts')->where('id', '=', $id)->delete();
