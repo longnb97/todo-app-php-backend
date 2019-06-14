@@ -89,21 +89,6 @@ class ProjectController extends Controller
         }
     }
 
-    //xem lai
-    public function getAccountAllProjects(Request $request, $userId)
-    {
-        try {
-            $data = ProjectParticipant::getProjects($userId);
-            if ($data->isEmpty()) {
-                return Client::response(0, 'project not found', 404, $data);
-            } else {
-                return Client::response(1, 'projects found', 200, $data);
-            }
-        } catch (QueryException $ex) {
-            return Client::response(0, $ex, 500, []);
-        }
-    }
-
     public function getAccountCreatedProjects(Request $request, $userId)
     {
         try {
