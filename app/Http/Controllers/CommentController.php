@@ -95,7 +95,7 @@ class CommentController extends Controller
     public function getTaskAllComments(Request $request, $taskId)
     {
         try {
-            $data = CommentModel::getTaskAllComments($taskId);
+            $data = CommentModel::getTaskComments($taskId);
             if ($data->isEmpty()) {
                 return Client::response(0, 'comments not found', 404, $data);
             } else {
